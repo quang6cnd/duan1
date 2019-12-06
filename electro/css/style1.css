@@ -1,0 +1,30 @@
+.sanpham_item a img{
+	width: 263px;
+	float: left;
+}
+.sanpham_item{
+float: left;
+width: 280px;
+	}
+.tv{
+	width: 50%;
+	float: left;
+}
+#order table{
+	width: 100%;
+	text-align: center;
+}
+#order table th{
+	text-align: center;
+	border-bottom: 1px solid #333;
+}
+/*.nhapthongtin tr td input[type=text]{
+	width: 100%;
+}*/
+.row #cr{
+	width: 50%;
+	height: 30px;
+	background: #f5f5f5;
+	float: left;
+	line-height: 30px;
+}
