@@ -1,5 +1,6 @@
 <?php 
 require_once "../connection.php";
+include "../include/quan_tri.php";
 if(isset($_GET['id_slide'])){
 		$id = $_GET['id_slide'];
 		$delete_sl = "DELETE from slide where id_slide = $id";

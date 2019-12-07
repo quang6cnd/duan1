@@ -1,5 +1,6 @@
 <?php
 include('includes/header.php');
+include "../include/quan_tri.php";
 require_once "../connection.php";
 $sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id = product.id_cate");
 $sttt->execute();

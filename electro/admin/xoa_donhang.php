@@ -1,5 +1,6 @@
 <?php 
 require_once "../connection.php";
+include "../include/quan_tri.php";
 if(isset($_GET['id'])){
 		$id = $_GET['id'];
 		$delete_dh = "DELETE from cart where id = $id";

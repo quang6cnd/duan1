@@ -1,5 +1,6 @@
 <?php include('includes/header.php'); 
 	require_once "../connection.php";
+	include "../include/quan_tri.php";
 	$select = "SELECT * from users";
 	$stmt = $conn->prepare($select);
 	$stmt->execute();

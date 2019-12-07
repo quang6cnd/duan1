@@ -1,5 +1,6 @@
 <?php 
 require_once "../connection.php";
+include "../include/quan_tri.php";
 //Lấy id trên đường dẫn và xóa theo id của nó
 if(isset($_GET['id'])){
 		$id = $_GET['id'];

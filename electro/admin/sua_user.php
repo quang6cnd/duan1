@@ -4,7 +4,7 @@
 	}
 </style>
 <?php
-
+include "../include/quan_tri.php";
 include('includes/header.php');
 require_once "../connection.php";
 $select = "SELECT * from users";

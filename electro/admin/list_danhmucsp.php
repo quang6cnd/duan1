@@ -1,5 +1,6 @@
-<?php include('includes/header.php'); ?>
+
 <?php include('includes/header.php');
+	include "../include/quan_tri.php";
 	require_once "../connection.php";
 	$select = "SELECT * from categories ORDER BY ordernum DESC";
 	$stmt = $conn->prepare($select);
@@ -9,8 +10,8 @@
 ?>
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<h3 style="margin-left: -200px">Danh sách Danh mục</h3>
-		<table class="table table-hover" style="margin-left: -200px">
+		<h3>Danh sách Danh mục</h3>
+		<table class="table table-hover" >
 			<thead>
 				<tr align="center">
 					<th>ID</th>

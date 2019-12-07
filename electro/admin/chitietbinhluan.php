@@ -1,5 +1,6 @@
 <?php include('includes/header.php');
 	require_once "../connection.php";
+	include "../include/quan_tri.php";
 	
    $product_id = "";
 	if(isset($_GET['product_id'])){

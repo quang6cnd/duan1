@@ -1,5 +1,6 @@
 <?php
 include('includes/header.php');
+include "../include/quan_tri.php";
 ?>
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

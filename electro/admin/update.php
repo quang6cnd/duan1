@@ -1,5 +1,6 @@
 <?php
 	require_once "../connection.php";
+	include "../include/quan_tri.php";
 	
 	class Test{
 
