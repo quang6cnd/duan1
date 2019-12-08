@@ -1,14 +1,4 @@
-<?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
 
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
      <div class="row">
 	   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <?php  include('includes/header.php');
