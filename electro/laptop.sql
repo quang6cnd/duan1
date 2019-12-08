@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 07, 2019 lúc 08:54 AM
+-- Thời gian đã tạo: Th12 06, 2019 lúc 06:35 AM
 -- Phiên bản máy phục vụ: 10.3.16-MariaDB
 -- Phiên bản PHP: 7.3.6
 
@@ -54,7 +54,7 @@ INSERT INTO `cart` (`id`, `id_user`, `name_user`, `address`, `phone`, `date`, `t
 --
 
 CREATE TABLE `categories` (
-  `id_cate` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name_cate` varchar(255) NOT NULL,
   `ordernum` int(11) NOT NULL,
   `show_menu` varchar(50) NOT NULL
@@ -64,12 +64,12 @@ CREATE TABLE `categories` (
 -- Đang đổ dữ liệu cho bảng `categories`
 --
 
-INSERT INTO `categories` (`id_cate`, `name_cate`, `ordernum`, `show_menu`) VALUES
-(1, 'Laptop', 1, '1'),
-(2, 'Phụ kiện laptop', 2, '1'),
-(3, 'Điện thoại', 3, '1'),
-(4, 'Gear', 4, '1'),
-(5, 'Máy ảnh', 5, '1');
+INSERT INTO `categories` (`id`, `name_cate`, `ordernum`, `show_menu`) VALUES
+(1, 'Laptop', 0, '1'),
+(2, 'Phụ kiện laptop', 0, '1'),
+(3, 'Điện thoại', 0, '1'),
+(4, 'Gear', 0, '1'),
+(5, 'Máy ảnh', 0, '1');
 
 -- --------------------------------------------------------
 
@@ -129,23 +129,11 @@ INSERT INTO `product` (`id`, `nameproduct`, `price`, `sale_price`, `detail`, `de
 (33, 'laptop Dell156', '15000000', '15', '<ul>\r\n	<li>CPU:</li>\r\n	<li>Intel Core M 5Y71</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>RAM:</li>\r\n	<li>8GB</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Ổ cứng:</li>\r\n	<li>SSD 256GB</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Card đồ họa:</li>\r\n	<li>Intel HD 5300</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>M&agrave;n h&igrave', '<p>Ngon - Bổ - Rẻ</p>\r\n', 'shop01.png', 15, '1', 0, 2),
 (34, 'laptop Dell156', '15000000', '15', '<ul>\r\n	<li>CPU:</li>\r\n	<li>Intel Core M 5Y71</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>RAM:</li>\r\n	<li>8GB</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Ổ cứng:</li>\r\n	<li>SSD 256GB</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>Card đồ họa:</li>\r\n	<li>Intel HD 5300</li>\r\n</ul>\r\n\r\n<ul>\r\n	<li>M&agrave;n h&igrave', '<p>Ngon - Bổ - Rẻ</p>\r\n', 'shop01.png', 15, '1', 0, 5),
 (35, 'demo123', '123', '1', '<p>12345</p>\r\n', '<p>567</p>\r\n', 'product09.png', 123, '1', 0, 0),
-(36, 'quang', '18000000', '10', '', '', '72164731_515945072578665_7629967701506523136_n.jpg', 123, '1', 0, 0),
+(36, 'quang', '18000000', '10', '<p>123123</p>\r\n', '<p>321321</p>\r\n', 'product03.png', 123, '1', 0, 5),
 (37, 'qe', '13', '1', '<p>132</p>\r\n', '<p>456</p>\r\n', 'hotdeal.png', 123, '1', 0, 3),
-(38, 'demo1', '1111', '1', '', '', 'shop02.png', 4, '0', 0, 0),
+(38, 'demo1', '1111', '1', '<p>2</p>\r\n', '<p>3</p>\r\n', 'shop02.png', 4, '1', 0, 5),
 (39, 'demo2', '123', '10', '<p>1</p>\r\n', '<p>12</p>\r\n', 'product02.png', 3, '1', 0, 2),
-(40, 'demo3', '15000000', '10', '<p>qưe</p>\r\n', '<p>qưads</p>\r\n', 'product04.png', 23, '1', 0, 1),
-(41, 'demo', '15000000', '12', '', '', '72164731_515945072578665_7629967701506523136_n.jpg', 123, '0', 0, 5),
-(42, 'laptop Dell', '15000000', '15', '', '', 'product01.png', 16, '1', 0, 1),
-(43, 'laptop Dell', '15000000', '15', '', '', 'product01.png', 15, '0', 0, 1),
-(44, 'laptop Dell', '15000000', '15', '', '', 'product01.png', 15, '0', 0, 1),
-(45, 'Samsung Galaxy Note 9', '6500000', '15', '', '', 'product07.png', 1, '1', 0, 1),
-(47, 'laptop Dell', '15000000', '15', '', '', 'product01.png', 15, '0', 0, 1),
-(48, 'demo1', '1111', '1', '', '', 'shop02.png', 4, '1', 0, 0),
-(49, 'demo1', '1111', '1', '', '', 'shop02.png', 4, '0', 0, 0),
-(50, 'demo1', '1111', '1', '', '', 'shop02.png', 5, '0', 0, 0),
-(51, 'demo1', '1111', '1', '<p>demo</p>\r\n', '<p>Quang</p>\r\n', '72164731_515945072578665_7629967701506523136_n.jpg', 4, '1', 0, 0),
-(52, 'demo1', '1111', '1', '', '', 'shop02.png', 4, '0', 0, 0),
-(53, 'demo1', '1111', '1', '', '', 'shop02.png', 4, '1', 0, 0);
+(40, 'demo3', '15000000', '10', '<p>qưe</p>\r\n', '<p>qưads</p>\r\n', 'product04.png', 23, '1', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -187,7 +175,7 @@ CREATE TABLE `slide` (
 
 INSERT INTO `slide` (`id_slide`, `detail`, `image`, `link`, `status`) VALUES
 (1, 'laptop', 'hotdeal.png', '#', b'1'),
-(2, 'logo', '636964563733396554_asus-vivobook-x509fj-dd.png', '#3', b'1'),
+(2, 'logo', 'logo.png', '#3', b'0'),
 (20, 'laptop123', 'product02.png', '#', b'1'),
 (21, 'máy ảnh', 'product09.png', '#', b'1');
 
@@ -249,7 +237,7 @@ ALTER TABLE `cart`
 -- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id_cate`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `comment`
@@ -295,13 +283,13 @@ ALTER TABLE `vouchers`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id_cate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `comment`
@@ -313,7 +301,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`

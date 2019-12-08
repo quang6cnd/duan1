@@ -1,11 +1,23 @@
-<?php
+
+<?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
+
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}}
+ ?>
+ <?php
 include('includes/header.php');
-include "../include/quan_tri.php";
+// include "../include/quan_tri.php";
 ?>
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <?php 
-      require_once "../connection.php";
+      require_once "../db.php";
       $select = "SELECT * from categories";
       $stmt = $conn->prepare($select);
       $stmt->execute();
@@ -33,8 +45,8 @@ include "../include/quan_tri.php";
             }
           }
         }
-        if(isset($_GET['id'])){
-          $id = $_GET['id'];
+        if(isset($_GET['id_cate'])){
+          $id_cate = $_GET['id_cate'];
           $sttt = $conn->prepare("SELECT * from categories where id_cate=$id_cate");
           $sttt->execute();
           $categories = $sttt->fetch();

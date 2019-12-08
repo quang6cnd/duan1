@@ -1,12 +1,23 @@
+<?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
+
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}}
+ ?>
 <style type="text/css">
 	.baoloi{
 		color: red;
 	}
 </style>
 <?php
-include "../include/quan_tri.php";
+// include "../include/quan_tri.php";
 include('includes/header.php');
-require_once "../connection.php";
+require_once "../db.php";
 $select = "SELECT * from users";
 $stmt = $conn->prepare($select);
 $stmt->execute();

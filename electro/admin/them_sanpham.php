@@ -1,7 +1,8 @@
+
 <?php
 include('includes/header.php');
-include "../include/quan_tri.php";
-require_once "../connection.php";
+// include "../include/quan_tri.php";
+require_once "../db.php";
 $sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id = product.id_cate");
 $sttt->execute();
 $result = $sttt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,16 +34,12 @@ $mess = "";
         }
 
     ///Kiểm tra
-        if(empty($name)){
+        if(empty($nameproduct)){
           $mess = "Vui lòng điền tên hàng hóa";
         }else if(empty($price)){
           $mess = "Thiếu đơn giá";
         }else if($price <= 0){
           $mess = "Đơn giá phải lớn hơn 0";
-        }else if($sale_price > 100){
-          $mess = "Giảm giá quá 100 %";
-    // }else if(empty($ngay_nhap)){
-    //   $mess = "Thiếu ngày nhập";
         }else if($status != 0 && $status != 1){
           $mess = "Chưa chọn trạng thái hiện thị";
         }else if(empty($amount)){
@@ -51,7 +48,7 @@ $mess = "";
           $mess = "Số lượng lớn hơn 0";
         }else{
       //Sql create
-          $create_sp = "INSERT into product( nameproduct, price, sale_price, image, detail, detail_specifications, status, amount, id_cate) values( '$name', '$price', '$sale_price', '$image',  '$detail', '$detail_specifications','$status', '$amount', '$id_cate')";
+          $create_sp = "INSERT into product( nameproduct, price, sale_price, image, detail, detail_specifications, status, amount, id_cate) values( '$nameproduct', '$price', '$sale_price', '$image',  '$detail', '$detail_specifications','$status', '$amount', '$id_cate')";
           $stmt = $conn->prepare($create_sp);
           $stmt->execute();
       //Check
@@ -107,15 +104,15 @@ $mess = "";
    <div class="row">
      <div class="form-group col-sm-4">
        <label>Tên sản phẩm</label>
-       <input type="text" name="name" class="form-control" placeholder="Tên sản phẩm" value="<?php if(isset($_POST['name'])) { echo $_POST['name'];}//Nếu thêm bị lỗi thì thông tin trường này sẽ vẫn còn trên ô textbox?>">
+       <input type="text" name="nameproduct" class="form-control" placeholder="Tên sản phẩm" >
      </div>
      <div class="form-group col-sm-4">
        <label>Giá tiền</label>
-       <input type="number" name="price" class="form-control" placeholder="Giá sản phẩm">
+       <input type="number" name="price" class="form-control" placeholder="Giá sản phẩm" min= "0">
      </div>
      <div class="form-group col-sm-4">
        <label>Khuyến mãi</label>
-       <input type="number" name="sale_price" class="form-control" placeholder="Khuyến mãi">
+       <input type="number" name="sale_price" min= "0" class="form-control" placeholder="Khuyến mãi">
      </div>
    </div>
    <div class="row">

@@ -1,0 +1,145 @@
+*{margin:0; padding:0;box-sizing: border-box;}
+body{
+	width: 1500px;
+	height: auto;
+	margin:0 auto;
+	background:#dddddd;
+}
+#left{
+	width: 300px;
+	float: left;
+	height: 100%;
+	background-color: #23282e;
+}
+#left_up{
+	width: 100%;
+	height: 100px;
+	border:1px solid #cccccc;
+}
+#left_up img{
+	width: 100%;
+	height: 100%;
+}
+#left_down{
+	height:1500px;
+	border:1px solid #cccccc;
+	position: relative;
+	clear: both;
+}
+#left_down ul li{
+	list-style: none;
+/*	border-bottom: 1px solid white;*/
+/*	text-align: center;*/
+	padding:16px 15px;
+	margin-right: 30px;
+
+}
+#left_down ul li a{
+	font-size: 18px;
+	color: white;
+}
+#left_down ul li i{
+	font-size: 18px;
+	margin-right: 20px;
+	color: white;
+}
+#left_down ul li a:hover{
+	text-decoration: underline;
+}
+
+
+#right{
+	width: 1100px;
+	height:auto;
+	float: left;
+	margin-left: 30px;
+	border:1px solid #cccccc;
+}
+#right_up{
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid #cccccc;
+}
+#right_up{
+	float: left;
+	position: relative;
+}
+
+#right_up form input{
+	width: 250px;
+	height: 30px;
+	margin-top: 30px;
+	margin-left: 100px;
+	border:1px solid #cccccc;
+	border-radius:10px;
+}
+#right_up form button{
+	width: 35px;
+	height: 30px;
+	border:1px solid #cccccc;
+	border-radius: 10px;
+	color: white;
+	background-color: #00cd3f;
+}
+#right_up img{
+	top:10px;
+	right: 60px;
+	position: absolute;
+	width: 
+}
+#right_up span{
+	position: absolute;
+	top:20px;
+	right: 10px;
+}
+#right_down {
+	width: 100%;
+	height: auto;
+	float: left;
+	position: relative;
+}
+#right_down .container{
+	width: 100%;
+	height: auto;
+}
+.container h2{
+	padding:14px 16px;
+	margin-top: 20px;
+}
+.container td button{
+	margin-left: 5px;
+}
+.container form {
+	width: 100%;
+	height: 800px;
+	border:1px solid #cccccc;
+	padding:15px 14px;
+	position: relative;
+}
+.container form label{
+	font-size: 18px;
+	margin:5px 5px 5px 10%;
+}
+.container form input{
+	width: 400px;
+	height: 40px;
+	border:1px solid #cccccc;
+	margin:5px 10px 5px 10%;
+	border-radius: 10px;
+	
+
+}
+.container form select{
+	margin-left:10%;
+
+}
+.chitiet{
+	position: absolute;
+	top: 50px;
+	right: 50px;
+}
+.container form button:hover {
+	transform: scale(1.1);
+	transition: 0.6s;
+}
+

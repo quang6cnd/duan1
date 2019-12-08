@@ -30,7 +30,7 @@
 				if($user['role'] == 1){
 					header('location: admin/');
 				}else{
-					header('Location: ' . $_SERVER['HTTP_REFERER']);
+					header('Location: index.php');
 				}
 			}else{
 				$mess = "Sai mật khẩu";

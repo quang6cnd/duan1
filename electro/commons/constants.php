@@ -1,7 +1,7 @@
 <?php 
 
-define('BASE_URL', 'http://localhost/pt14313-web/');
-define('AUTH', 'SESSION_AUTH');
+define('BASE_URL', 'http://localhost/duan1-master/duan1-master/electro/');
+define('AUTHIES', 'SESSION_AUTHIES');
 
 
  ?>

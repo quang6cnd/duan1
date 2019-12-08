@@ -1,18 +1,23 @@
-<?php
-	require_once "../connection.php";
-	// include "../include/quan_tri.php";
-	 $sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id_cate = product.id_cate");
-    $sttt->execute();
-   $result = $sttt->fetchAll(PDO::FETCH_ASSOC);
 
-	if(isset($_GET['id'])){
-		$id = $_GET['id'];
-		
-		$sl = "SELECT * from product where id=$id";
-		$stmt = $conn->prepare($sl);
-		$stmt->execute();
-		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
+<?php
+	require_once "../db.php";
+
+	require_once '../commons/constants.php';
+	require_once '../commons/helpers.php';
+	// include "../include/quan_tri.php";
+$sql="SELECT * FROM product INNER JOIN categories ON product.id_cate=categories.id_cate";
+$stmt=$conn->prepare($sql);
+$stmt->execute();
+$join=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	// if(isset($_GET['id'])){
+	// 	$id = $_GET['id'];
+
+	// 	$sl = "SELECT * from product where id=$id";
+	// 	$stmt = $conn->prepare($sl);
+	// 	$stmt->execute();
+	// 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 ?>
@@ -24,7 +29,7 @@
 			<thead>
 				<tr>
 					<th>STT</th>
-				
+
 					<th>ID sản phẩm</th>
 					<th>Danh mục</th>	
 					<th>Tên sản phẩm</th>
@@ -38,46 +43,46 @@
 				</tr>
 				<?php
 					//đổ dữ liệu ra
-					foreach($result as $row){
-						$gia_sp = number_format($row['price'], 0, '', ',');
+				foreach($join as $row){
+					$gia_sp = number_format($row['price'], 0, '', ',');
 					?>
-						<tr>
+					<tr>
 						<!-- 	<td><input name="mang[]"  type="checkbox" value="<?= $row['ma_hh'] ?>"></td> -->
-							<td style="color: #888">
-								<?php 
-								if(isset($i)){
-									$i += 1;
-								}else{
-									$i = 1;
-								}
-								
-								echo $i;
-								?>
-							 	
-							</td>
-							<td><?= $row['id'] ?></td>
-							<td><?= $row['name_cate'] ?></td>
-							<td><?= $row['nameproduct'] ?></td>
+						<td style="color: #888">
+							<?php 
+							if(isset($i)){
+								$i += 1;
+							}else{
+								$i = 1;
+							}
+
+							echo $i;
+							?>
+
+						</td>
+						<td><?= $row['id'] ?></td>
+						<td><?= $row['name_cate'] ?></td>
+						<td><?= $row['nameproduct'] ?></td>
 						
-							<td><img style="max-height: 40px" src="../img/<?= $row['image'] ?>" alt=""></td>
-							<td><?= $gia_sp ?> VND</td>
-							<td><?= $row['sale_price'] ?> %</td>
-							<td><?= $row['amount'] ?></td>
-							<td><?= $row['rating'] ?></td>
-							<td><?= $row['status'] ?></td>
-							<td class="action">
-								<a href="sua_sanpham.php?id=<?= $row['id'] ?>">Thay đổi | </a>
-								<a href="xoa_sanpham.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Sản phẩm này ?');">Xóa</a>
-							</td>
-						</tr>
+						<td><img style="max-height: 40px" src="../img/<?= $row['image'] ?>" alt=""></td>
+						<td><?= $gia_sp ?> VND</td>
+						<td><?= $row['sale_price'] ?> %</td>
+						<td><?= $row['amount'] ?></td>
+						<td><?= $row['rating'] ?></td>
+						<td><?= $row['status'] ?></td>
+						<td class="action">
+							<a href="sua_sanpham.php?id=<?= $row['id'] ?>">Thay đổi | </a>
+							<a href="xoa_sanpham.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Sản phẩm này ?');">Xóa</a>
+						</td>
+					</tr>
 					<?php
-					}
+				}
 				?>
-							
-						</tr>
-					
-			</tbody>
-		</table>
+
+			</tr>
+
+		</tbody>
+	</table>
 		<!-- <?php 
 		echo "<ul class='pagination' style='float:right;'>";
 				if ($per_page > 1)//số trang lớn hơn 1 mới cho hiển thị ra nút phân trang
@@ -103,7 +108,7 @@
 					}
 				}
 				echo "</ul>";
-				 ?> -->
-	</div>
-</div>
-<?php include('includes/footer.php') ?>
+				?> -->
+			</div>
+		</div>
+		<?php include('includes/footer.php') ?>

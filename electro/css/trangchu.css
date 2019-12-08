@@ -1,0 +1,853 @@
+*{margin:0;padding:0;box-sizing: border-box;}
+/*@font-face{
+	font-family: 'myfont';
+	src:url('../fonts/ObelixProB-cyr.ttf');
+	 font-weight: normal;
+	 font-style: normal;
+}*/
+body{
+	width: 1000px;
+	height: auto;
+	margin: 0 auto;
+	border:1px solid #cccccc;
+	font-family: myfont;
+	background-color: #f8f8f8;
+}
+#top{
+	height: 43px;
+/*	border-bottom: 1px solid #ccc;*/
+	position: relative;
+}
+#top label{
+	position: relative;
+	display: inline-block;
+	padding:10px;
+	margin:0 10px 0 10px;
+	left: 500px;
+	top: 0;
+
+}
+/*#dn{
+	margin-left: 500px;
+
+}
+#dx{
+	position: absolute;
+
+}*/
+#logo{
+	height: 70px;
+	border: 1px solid #ccc;
+	position: relative;
+	border-left: none;
+	border-right: none;
+
+}
+#logo h2{
+	font-size: 18px;
+	position: absolute;
+	padding: 28px;
+	margin-right: 50px;
+	color:#00cd3f;
+}
+#logo i{
+	font-size: 18px;
+	margin-top: 30px;
+	display: inline-block;
+	position: absolute;
+	left:10px;
+	margin-right: 20px;
+}
+#logo img{
+	width: 300px;
+	height: 60px;
+	margin-left:29%;
+}
+#logo form{
+/*	display: inline-block;*/
+	position: absolute;
+	top:20px;
+	right: 20px;
+}
+#logo input{
+	bottom:20px;
+	right:100px;
+	margin-top: 8px;
+	margin-right: 10px;
+}
+menu{
+	height: 50px;
+/*	border: 1px solid black;*/
+	position: relative;
+	/*background-color: #00cd3f;*/
+}
+menu ul li{
+	list-style:none;
+	line-height: 50px;
+	float: left;
+	width: 150px;
+	display: block;
+	margin-left: 20px;
+
+}
+menu ul li:hover{
+	display: inline-block;
+	transition: 0.6s;
+	background: #00cd3f;
+	text-align: center;
+}
+menu ul li a{
+	text-decoration: none;
+	font-size: 18px;
+	font-family: myfont;
+	color:black;
+
+}
+#danhmuc{
+	width: 237px;
+	height: 361px;
+	border:1px solid #ccc;
+	position: relative;
+	margin-left: 30px;
+	top:20px;
+	float: left;
+}
+#danhmuc #hop{
+		width: 237px;
+		height: 30px;
+		border-left: none;
+		border-right: none;
+		background: #00cd3f;
+}
+#hop label{
+	margin-left: 20px;
+	font-weight: bold;
+	font-size: 20px;
+	color:white;
+}
+#danhmuc ul li{
+	text-decoration: none;
+	list-style: none;
+	margin-bottom: 20px;
+	margin-top: 20px;	
+
+}
+#danhmuc ul li a{
+	font-size: 20px;
+	margin-left: 25px;
+	text-decoration: none;
+	color: #003bb2;
+
+}
+#danhmuc ul li a:hover{
+	color:red;
+	transition: 0.6s;
+	text-decoration: underline;
+
+}
+#up{
+	width: 100%;
+	height: auto;
+	position: relative;
+	/*border:1px solid black;*/
+	border-top: 1px solid #ccc;
+	clear: both;
+	margin-bottom: 50px;
+}
+/* Slideshow container */
+.slideshow-container {
+  width: 650px;
+  position: relative;
+  height: 371px;
+  float: left;
+  margin: auto;
+  border:1px solid #ccc;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.mySlides .text {
+  color: red;
+  font-size: 20px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  margin-top: 150px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+#middle{
+	width: 100%;
+	height: 440px;
+	/*border:1px solid #cccc;*/
+	height: auto;
+}
+/*#middle h3{
+	width: 100%;
+	height: 50px;
+	background-color: #00cd3f;
+}*/
+#middle h3 span{
+	line-height: 50px;
+	margin-left: 40px;
+	color: white;
+	font-size: 25px;
+}
+.box{
+	width: 230px;
+	height: 350px;
+	border:1px solid #cccccc;
+	position: relative;
+	border-radius: 5px;
+	float: left;
+	margin:20px 5px 5px 12px;
+	overflow: hidden;
+	display: inline-block;
+	clear: all;
+
+}
+.box:hover{
+	box-shadow:0 0 0 2px rgba(0,255,0,0.3);
+}
+/*.box .imgbox{
+	position: relative;
+}
+.box .imgbox img{
+	max-width: 100%;
+	transition: transform 2s;
+}*/
+/*.box :hover .imgbox img{
+	transform: scale(1.2);
+}*/
+.box img{
+	width: 200px;
+	height: 200px;
+	margin:10px 5px 0px 10px;
+	transition: 1s;
+	display: inline-block;
+	z-index: 1;
+}
+.box img:hover{
+	transform: scale(0.8);
+	transition: 0.6s;
+}
+.box .thongtin{
+	width: 230px;
+	position: absolute;
+	top:220px;
+	left:10px;
+	bottom: 10px;
+	right: 10px;
+	
+
+}
+.box .thongtin .content{
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+}
+.box .thongtin .content h2{
+	margin:0;
+	padding:0;
+	font-size: 19px;
+}
+.thongtin h2 a{
+	text-align: center;
+    font-size: 19px;
+    color: #00cd3f;
+    font-weight: 500;
+/*    display: block;*/
+    margin-bottom: 8px;
+    overflow: hidden;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    margin-top: 10px;
+    display: inline-block;
+}
+.thongtin h2:hover a{
+	transition: 1s;
+	color:red;
+	padding: 5px;
+}
+.thongtin span{
+/*    background-color: #00cd3f;*/
+    color:red;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0px 20px;
+    line-height: 33px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    display: inline-block;
+
+}
+
+#down{
+	width: 100%;
+	height: auto;
+	/*border:1px solid #cccc;*/
+	position: relative;
+	clear: both;
+}
+#down .td h3{
+	width: 100%;
+	height: 40px;
+	background-color:  #006c21;
+	clear: both;
+
+}
+#tren{
+	width: 100%;
+	height: auto;
+	clear: both;
+}
+
+#down .td h3 a{
+	text-decoration: none;
+	font-size:20px;
+	font-family: arial;
+	line-height: 40px;
+	color:white;
+	margin-left: 30px;
+	margin-bottom: 10px;
+
+}
+#left{
+	width: 350px;
+	height: 300px;
+	display: inline-block;
+	float: left;
+	margin:20px 10px 10px 20px;
+}
+#left a img{
+	width: 100%;
+}
+#right{
+	width: 560px;
+	height: 330px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+
+}
+#right .box2{
+	width: 170px;
+	height: 100%;
+	border:1px solid #cccc;
+	float: left;
+	margin-top:5px;
+	margin-left: 15px;
+	background-color: white;
+	overflow: hidden;
+}
+.box2 img{
+	width: 100%;
+	height: 140px;
+	padding:5px;
+	transition: 0.6s;
+}
+.box2 img:hover{
+	transform: scale(1.2);
+}
+.layer span{
+	font-size: 15px;
+	color:#00cd3f;
+	font-family: tahoma;
+	
+}
+.layer{
+	padding:15px;
+	height: 140px;
+	margin-top: 30px;
+	position: relative;
+	transition:1s;
+}
+.layer:hover{
+	position: relative;
+	bottom:15px;
+	left: 0px;
+}
+.layer h3 a{
+	font-size: 17px;
+	font-family: sans-serif;
+	color: #fe400d;
+}
+.layer h3 a:hover{
+	color:orange;
+	display: inline-block;
+}
+#pk{
+	width: 100%;
+	height: auto;
+	/*border:1px solid #ccc;*/
+	margin:30px auto 0;
+	background-color: white;
+	clear: both;
+	flex-direction: row;
+	flex-grow: wrap;*/
+	position: relative;
+}
+#pk .box3{
+	width: 300px;
+	height: 270px;
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 50px;
+	/*background-color: #ff0;
+	margin:15px;
+	box-sizing: border-box;
+	float: left;
+	overflow: hidden;*/
+}
+.image{
+	display: block;
+	width: 300px;
+	height: 270px;
+}
+.overlay{
+	transition: all .4s ease;
+	opacity: 0;
+	background-color: #eee;
+	display:inline-block;
+}
+.box3:hover .overlay{
+	opacity: 1;
+}
+.box3.text{
+	color: white;
+	font-family: sans-serif;
+	position: absolute;
+	transform: translate(-50%,-50%);
+}
+.overlay .text{
+	position: relative;
+	display: block;
+}
+.overlay .text h3 a{
+	position: absolute;
+	top:30px;
+	left: 20px;
+	display: inline-block;
+}
+.overlay .text p{
+	position: absolute;
+	top:80px;
+	left: 20px;
+}
+.overlaytop{
+	width: 100%;
+	height: 0;
+	top: 0px;
+	left: 0;
+	background-color: #00cd3f, opacity:0.5;
+}
+.box3:hover .overlaytop{
+	height: 100%;
+
+}
+.text h3 a{
+	font-family: sans-serif;
+	font-size: 20px;
+	color:  #006c21;
+	text-decoration: none;
+	position: absolute;
+	top:20px;
+	left: 20px;
+}
+.text p{
+	position: absolute;
+	top:30px;
+	left: 20px;
+	font-size: 17px;
+	color:black;
+	font-family: tahoma;
+	font-weight: normal;
+}
+#phukien{
+	width: 100%;
+	height: 40px;
+	background: #00cd3f;
+}
+#phukien h3 a{
+	color: white;
+	line-height: 40px;
+	margin-left: 30px;
+	font-size: 25px;
+	text-decoration: none;
+}
+#phukien:hover a{
+	color: red;
+	transition: 0.6s;
+}
+#banner{
+	width: 100%;
+	height: 200px;
+	margin-top: 30px;
+}
+#banner img{
+	width: 100%;
+	height: 100%;
+}
+footer{
+	width: 100%;
+	height: 150px;
+	background-color: #006c21;
+	margin-top: 30px;
+	position: relative;
+	clear: both;
+	/*border:1px solid #cccccc;*/
+}
+footer .logo1{
+	line-height: 150px;
+	margin-left: 50px;
+	position: relative;
+	clear: both;
+
+}
+footer .logo1 h3{
+	color: white;
+	font-family: tahoma ;
+	font-size: 30px;
+	position: absolute;
+}
+footer .icon{
+	float: right;
+	position: absolute;
+	top:50%;
+	right: 45%;
+	font-size: 35px;
+	transition: 1s;
+}
+footer .icon i{
+	margin-left: 50px;
+	color:white;
+}
+footer .icon:hover i{
+	margin-top: 5px;
+	transition: 1s;
+}
+.menu2{
+	position: absolute;
+	top:20%;
+	right: 20%;
+	display: inline-block;
+}
+.menu2 ul li{
+	list-style: none;
+	margin-bottom: 10px;
+}
+.menu2 ul li a{
+	color: white;
+	margin-left: 10px;
+	font-size: 20px;
+	text-decoration: none;
+}
+.menu2 ul li i{
+	font-size: 25px;
+	color: white;
+}
+.contact{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+}
+.contact h3{
+	color:white;
+}
+.contact span{
+	color: white;
+}
+/*css chi tiết sản phẩm*/
+#tren{
+	width: 100%;
+	height: 500px;
+	position: relative;
+	border-top: 1px solid #ccc;
+}
+#trai{
+	width: 380px;
+	height: 100%;
+	border-right: 1px solid #ccc;
+}
+#trai img{
+	width: 350px;
+	height: 350px;
+	position: absolute;
+	padding:10px;
+	top:80px;
+	left: 10px;
+}
+#phai{
+	width: 600px;
+	position: absolute;
+	top: 0px;
+	right: 20px;
+	height:100%;
+	display: inline-block;
+}
+#phai h3{
+	margin-top: 5%;
+	color: #00cd3f;
+	font-size: 17px;
+	font-family: tahoma;
+	margin-left: 25px;
+	margin-bottom: 20px;
+}
+#phai span{
+	margin-left: 30px;
+	display: inline-block;
+}
+#phai span i{
+	color: #f3d402;
+}
+#phai h4{
+	color: #00cd3f;	
+	margin-left: 30px;
+	margin-top: 10px;
+	font-size: 18px;
+}
+#phai p{
+	margin-left: 30px;
+	font-size: 17px;
+	margin-top: 20px;
+}
+#phai h2{
+	color:#00cd3f;		
+	font-size: 18px;
+	margin-left: 30px;
+	margin-bottom: 5px;
+}
+#phai select{
+	margin-left: 30px;
+}
+#phai button{
+	border-radius: 5px;
+	background-color: #00cd3f;	
+	color: white;
+	border:none;
+	width: 60px;
+	height: 25px;
+	margin-left: 10px;
+}
+.box5{
+	width: 230px;
+	height: 250px;
+	border:1px solid #cccccc;
+	position: relative;
+	border-radius: 5px;
+	float: left;
+	margin:20px 5px 5px 5px;
+	overflow: hidden;
+	display: inline-block;
+	margin-left: 10px;
+}
+#down2{
+	height: auto ;
+	clear: both;
+}
+#down2 .box5 img{
+	width: 80%;
+	height: 150px;
+	padding: 10px;
+	margin-left: 20px;
+}
+.box5 .contain h2 a{
+	font-size: 15px;
+	margin-bottom:0px;
+}
+.box5 .contain span{
+	font-size: 15px;
+}
+.box5 .thongtin{
+	margin-left: 40px;
+}
+#down2 h3 {
+	width: 100%;
+	height: 40px;
+	background-color:  #00cd3f;	
+
+}
+#down2 h3 a{
+	margin-left: 30px;
+	line-height: 40px;
+	font-size: 18px;
+	color: white;
+	font-family: tahoma;
+	text-decoration: none;
+}
+#down2 h3:hover a{
+	color: #fffc00;
+}
+#comment{
+	width: 100%;
+	height: auto;
+	margin-top: 50px;
+	border-top: 1px solid #ccc;
+	clear: both;
+}
+#comment h3{
+	margin:10px 10px 10px 20px;
+}
+#comment textarea{
+	margin-left: 30px;
+}
+#comment button{
+	margin-left: 30px;
+	margin-top: 10px;
+
+}
+/*css đăng nhập*/
+#login{
+	width: 100%;
+	height: 500px;
+}
+#signin{
+	width: 40%;
+	height:600px;
+	border:1px solid #cccccc;
+	position: relative;
+	top:10%;
+	left: 32%;
+	margin-top: 30px;
+
+}
+#signin h3{
+	font-size: 20px;
+	margin-left: 40%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 25px;
+	font-family: tahoma;
+	color:#00cd3f;
+
+
+}
+#signin form{
+	position: absolute;
+	/*top:25%;
+	left: 27%;*/
+}
+#signin form input{
+	width: 280px;	
+	height: 30px;	
+	margin:20px 10px 10px 20%;
+	border:1px solid #cccc;
+	border-radius: 10px;
+
+}
+#signin .in{
+	width: 280px;
+	height: 30px;
+	color: 	#ffff;
+	border-style: none;
+	background-color: #00cd3f;
+	font-size: 18px;
+	font-family: sans-serif;
+	margin-left: 20%;
+	border:1px solid #cccccc;
+	border-radius: 5px;
+}
+#signin span a{
+	color: #00cd3f;
+	opacity: 0.8;
+	text-decoration: none;
+	margin:10px 10px 5px 60px;
+	font-size: 14px;
+	margin-bottom: 10px;
+	text-decoration: underline;
+}
+#signin h3 a{
+	font-size: 15px;
+	text-decoration: none;
+	color: #00cd3f;
+}
+/*css quản trị*/
+/*#left{
+	width: 200px;
+	height: 85%;
+	background-color: red;
+}
+*/
+#bl{
+	border:1px solid #cccc;
+	margin:10px 10px 10px 100px;
+}
+
+

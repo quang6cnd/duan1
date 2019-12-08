@@ -1,9 +1,19 @@
+<?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
 
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}}
+ ?>
      <div class="row">
 	   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <?php  include('includes/header.php');
-      include "../include/quan_tri.php";
-      require_once "../connection.php";
+      // include "../include/quan_tri.php";
+      require_once "../db.php";
       $select = "SELECT * from slide";
       $stmt = $conn->prepare($select);
       $stmt->execute();
@@ -34,7 +44,7 @@
             $stmt->execute();
             //Check
             if($stmt->rowCount() > 0){
-               move_uploaded_file($_FILES['anh']['tmp_name'], "../img/" . $image);
+               move_uploaded_file($_FILES['anh']['tmp_name'], "../slide/" . $image);
               $mess = " Thêm Thành Công !";
           
             }else{

@@ -1,7 +1,18 @@
+<?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
+
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}}
+ ?>
 <?php
 include('includes/header.php');
-include "../include/quan_tri.php";
-require_once "../connection.php";
+// include "../include/quan_tri.php";
+require_once "../db.php";
 $sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id = product.id_cate");
 $sttt->execute();
 $result = $sttt->fetchAll(PDO::FETCH_ASSOC);
@@ -74,7 +85,7 @@ $mess = "";
         }
         ?>
 
-        <h3>Sửa sản phẩm</h3>
+        <h3>Sửa sản phẩm : <strong><?=$product['nameproduct']?></strong></h3> 
         <div class="form-group">
           <div style="float: left;">
            <label name = "" id="">Danh mục sản phẩm</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -84,7 +95,7 @@ $mess = "";
             foreach ($categories as $r) {
               ?>
 
-              <option value="<?= $r['id_cate']?>"><?=$r['name_cate']?></option>
+              <option value="<?= $r['id']?>"><?=$r['name_cate']?></option>
               
             </div>
             <?php

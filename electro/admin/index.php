@@ -1,6 +1,19 @@
 <?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
+
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}
+}
+ ?>
+<?php 
 include('includes/header.php');
-include "../include/quan_tri.php";
+require_once "../db.php";
+// include "../include/quan_tri.php";
 
 ?>
 <div class="row">
@@ -60,3 +73,4 @@ include "../include/quan_tri.php";
 <?php
 include ('includes/footer.php');
 ?>
+<?php  ?>

@@ -1,6 +1,17 @@
+<?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
+
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}}
+ ?>
 <?php include('includes/header.php'); 
-	require_once "../connection.php";
-	include "../include/quan_tri.php";
+	require_once "../db.php";
+	// include "../include/quan_tri.php";
 	
     $stmt = $conn->prepare("SELECT product_id, MAX(date_bl) , MIN(date_bl), COUNT(1) FROM comment GROUP BY product_id HAVING COUNT(1) > 0");
     // $stmt = $conn->prepare("");

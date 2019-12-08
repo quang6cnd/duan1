@@ -1,13 +1,12 @@
-
      <div class="row">
      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <?php  include('includes/header.php');
-include "../include/quan_tri.php"; 
+// include "../include/quan_tri.php"; 
 
 
 ?>
 <?php
-      require_once "../connection.php";
+      require_once "../db.php";
       $select = "SELECT * from slide";
       $stmt = $conn->prepare($select);
       $stmt->execute();
@@ -23,7 +22,7 @@ include "../include/quan_tri.php";
             echo $anhcu;
           }else{
             $image = $_FILES['anh']['name'];
-             move_uploaded_file($_FILES['anh']['tmp_name'], "../img/" . $image);
+             move_uploaded_file($_FILES['anh']['tmp_name'], "../slide/" . $image);
           }
 
         if(empty($detail)){
@@ -79,7 +78,7 @@ include "../include/quan_tri.php";
               <label for="" class="radio-inline"><input type="radio" name="status" value="1" checked="checked">Hiển thị</label>
               <label for="" class="radio-inline"><input type="radio" name="status" value="0">Không hiển thị</label>
             </div>
-            <input type="submit" name="btn_slide" class="btn_slide" value="Thêm">
+            <input type="submit" name="btn_slide" class="btn_slide" value="Sửa">
           </form>
       </div>
 </div>

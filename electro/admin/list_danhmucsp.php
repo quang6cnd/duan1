@@ -1,7 +1,17 @@
+<?php 
+session_start();
+if (isset($_SESSION['username'])) {
+$username = $_SESSION['username'];
+$sql_tk = "SELECT * FROM users WHERE username = '$username'";
+$stmt_tk = $conn->query($sql_tk)->fetch();
 
+if ($stmt_tk['role'] == "0") {
+  header('location: ../index.php');
+}}
+ ?>
 <?php include('includes/header.php');
-	include "../include/quan_tri.php";
-	require_once "../connection.php";
+	// include "../include/quan_tri.php";
+	require_once "../db.php";
 	$select = "SELECT * from categories ORDER BY ordernum DESC";
 	$stmt = $conn->prepare($select);
 	$stmt->execute();
