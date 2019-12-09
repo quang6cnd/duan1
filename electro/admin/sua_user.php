@@ -1,24 +1,14 @@
-<?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
 
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
 <style type="text/css">
 	.baoloi{
 		color: red;
 	}
 </style>
 <?php
-// include "../include/quan_tri.php";
+include'includes/check_login.php';
 include('includes/header.php');
 require_once "../db.php";
-$select = "SELECT * from users";
+$select = "SELECT * from admin";
 $stmt = $conn->prepare($select);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -50,8 +40,8 @@ $mess = "";
 				$mess = "Vui lòng điền đầy đủ thông tin cần thiết";
 			}else{
       //Sql create
-				$update_kh = "UPDATE users set username='$username', name='$name', image='$image', email='$email', role='$role' ,status='$status' where id='$id'";
-				$stmt = $conn->prepare($update_kh);
+				$update_ad = "UPDATE admin set username='$username', name='$name', image='$image', email='$email', role='$role' ,status='$status' where id_admin='$id_admin'";
+				$stmt = $conn->prepare($update_ad);
 				$stmt->execute();
       //Check
 				if($stmt->rowCount() > 0){
@@ -63,9 +53,9 @@ $mess = "";
 				}
 			} 
 		}
-		if(isset($_GET['id'])){
-          $id = $_GET['id'];
-          $stmt = $conn->prepare("SELECT * from users where id=$id");
+		if(isset($_GET['id_admin'])){
+          $id_admin = $_GET['id_admin'];
+          $stmt = $conn->prepare("SELECT * from admin where id_admin=$id_admin");
           $stmt->execute();
           $users = $stmt->fetch();
         }
@@ -107,7 +97,7 @@ $mess = "";
 				<label for="" class="radio-inline"><input type="radio" name="role" value="1" checked="checked">admin</label>
 				<label for="" class="radio-inline"><input type="radio" name="role" value="0">Khách hàng</label>
 			</div>
-			<input type="submit" name="btn_user" class="btn_user" value="Thêm">
+			<input type="submit" name="btn_user" class="btn_user" value="Sửa">
 		</form>
 	</div>
 </div>

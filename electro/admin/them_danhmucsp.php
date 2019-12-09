@@ -1,5 +1,6 @@
 
 <?php
+include'includes/check_login.php';
 include('includes/header.php');
 // include "../include/quan_tri.php";
 ?>

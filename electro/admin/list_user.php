@@ -1,15 +1,6 @@
 <?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
-
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
-<?php include('includes/header.php'); 
+	include'includes/check_login.php';
+	include('includes/header.php'); 
 	require_once "../db.php";
 	// include "../include/quan_tri.php";
 	$select = "SELECT * from users";
@@ -22,7 +13,7 @@ if ($stmt_tk['role'] == "0") {
 <div class="row">
 	<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<button style="float: right; text-decoration: none; color: #fff; margin-top: 	20px; margin-right: 	30px;">	<a href="them_user.php" style="color: black"> Thêm tài khoản </a></button> -->
-		<h3>Danh sách tài khoản admin</h3>
+		<h3>Danh sách tài khoản users</h3>
 
 		<table class="table table-hover">
 			<thead>
@@ -33,7 +24,6 @@ if ($stmt_tk['role'] == "0") {
 					<th>Địa chỉ Email</th>
 					<th>Hình ảnh</th>
 					<th>Trạng thái</th>
-					<th>Vai trò</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -43,7 +33,7 @@ if ($stmt_tk['role'] == "0") {
 					foreach($result as $row){
 					?>
 						<tr>
-							<td><?= $row['id'] ?></td>
+							<td><?= $row['id_user'] ?></td>
 							<td><?= $row['username'] ?></td>
 							<td><?= $row['name'] ?></td>
 							<td><?= $row['email'] ?></td>
@@ -61,7 +51,7 @@ if ($stmt_tk['role'] == "0") {
 									}
 								?>
 							</td>
-							<td>
+							<!-- <td>
 								<?php
 									if($row['role'] == 0){
 										?>
@@ -73,7 +63,7 @@ if ($stmt_tk['role'] == "0") {
 										<?php
 									}
 								?>
-							</td>
+							</td> -->
 							<td class="action">
 								<?php
 									if($row['role'] == 1){
@@ -82,7 +72,14 @@ if ($stmt_tk['role'] == "0") {
 										<?php
 									}
 								?>
-								&#160;<a href="xoa_user.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Tài khoản này ?');">Xóa</a>
+								<?php
+									if($row['role'] == 0){
+										?>
+										&#160;<a href="xoa_user.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Tài khoản này ?');">Xóa</a>
+										<?php
+									}
+								?>
+								
 							</td>
 						</tr>
 					<?php

@@ -1,19 +1,9 @@
 <?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
-
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
-<?php
+include'includes/check_login.php';
 include('includes/header.php');
 // include "../include/quan_tri.php";
 require_once "../db.php";
-$sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id = product.id_cate");
+$sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id_cate = product.id_cate");
 $sttt->execute();
 $result = $sttt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $conn->prepare("SELECT * from categories");
@@ -45,8 +35,7 @@ $mess = "";
           $mess = "Thiếu đơn giá";
         }else if($price <= 0){
           $mess = "Đơn giá phải lớn hơn 0";
-        }else if($sale_price > 100){
-          $mess = "Giảm giá quá 100 %";
+        
     // }else if(empty($ngay_nhap)){
     //   $mess = "Thiếu ngày nhập";
         }else if($status != 0 && $status != 1){
@@ -95,7 +84,7 @@ $mess = "";
             foreach ($categories as $r) {
               ?>
 
-              <option value="<?= $r['id']?>"><?=$r['name_cate']?></option>
+              <option value="<?= $r['id_cate']?>"><?=$r['name_cate']?></option>
               
             </div>
             <?php

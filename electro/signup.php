@@ -30,10 +30,10 @@
 			<input type="text" id="email" placeholder="email" name="email">
 			<input type="text" id="address" placeholder="address" name="address" ><br>
 			<input type="text" id="phone"  min="0" placeholder="Phone number" name="phone"><br>
-			<input type="radio" name="status" checked="" value="1" ><br>
+			<input type="hidden" name="status" value="1" >
 			<input type="file" id="image"  name="file"><br>
 			<button type="submit" class="in"  name="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Creat account</button><br>
-			<h3><a href="dangnhap.php" title="">Sign in</a></h3>
+			<h3><a href="signin.php" title="">Sign in</a></h3>
 		</form>
 		
 	</div>

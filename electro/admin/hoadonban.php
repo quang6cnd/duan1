@@ -1,15 +1,6 @@
 <?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
-
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
-<?php include('includes/header.php'); 
+	include'includes/check_login.php';
+	include('includes/header.php'); 
 	require_once "../db.php";
 	// include "../include/quan_tri.php";
 	$select = "SELECT * from cart";
@@ -33,7 +24,10 @@ if ($stmt_tk['role'] == "0") {
 					<th>Địa chỉ</th>
 					<th>Số điện thoại</th>
 					<th>Ngày đặt</th>
+					<th>Email</th>
+					<th>Ghi chú</th>
 					<th>Tổng</th>
+					
 					<th>Trạng thái</th>
 					<th width="150">Action</th>
 				</tr>
@@ -50,7 +44,9 @@ if ($stmt_tk['role'] == "0") {
 							<td><?= $row['name_user'] ?></td>
 							<td><?= $row['address'] ?></td>
 							<td><?= $row['phone'] ?></td>
-							<td><?= $row['date'] ?></td>
+							<td><?= $row['date_cart'] ?></td>
+							<td><?= $row['email'] ?></td>
+							<td><?= $row['order_note'] ?></td>
 							<td><?= $total ?> VND</td>
 							<td>
 								<?php

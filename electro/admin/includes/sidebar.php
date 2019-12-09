@@ -69,15 +69,20 @@
 
             </li> 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo_us"><i class="glyphicon glyphicon-user"></i> &nbsp;Tài khoản<i class="fa fa-fw fa-caret-down"></i></a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo_us"><i class="glyphicon glyphicon-user"></i> &nbsp;Tài khoản admin<i class="fa fa-fw fa-caret-down"></i></a>
            <ul id="demo_us" class="collapse">
            <li>
-                    <a href="them_user.php">Thêm mới</a>
+                    <a href="them_admin.php">Thêm mới</a>
                 </li>
                 <li>
-                    <a href="list_user.php">Danh sách</a>
+                    <a href="list_admin.php">Danh sách</a>
                 </li>
             </ul>
+        </li> 
+        <li>
+            <a href="list_user.php" data-toggle="collapse" data-target="#demo_us"><i class="glyphicon glyphicon-user"></i> &nbsp;Tài khoản User</a>
+          
+                
         </li> 
 
         <script> 

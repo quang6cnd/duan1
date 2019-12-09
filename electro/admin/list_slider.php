@@ -1,15 +1,6 @@
 <?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
-
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
-<?php include('includes/header.php');
+	include'includes/check_login.php';
+	include('includes/header.php');
 	require_once "../db.php";
 	// include "../include/quan_tri.php";
 	$select = "SELECT * from slide";
@@ -50,7 +41,7 @@ if ($stmt_tk['role'] == "0") {
 							
 							<td><?= $row['id_slide'] ?></td>
 							<td><?= $row['detail'] ?></td>
-							<td><img style="height: 100px" src="../slide/<?= $row['image'] ?>" alt=""></td>
+							<td><img style="height: 100px" src="../img/<?= $row['image'] ?>" alt=""></td>
 							<td><?= $row['link'] ?></td>
 							<td><?= $showtt ?></td>
 							<td><a href="sua_slider.php?id_slide=<?= $row['id_slide'] ?>">Thay đổi</a></td>

@@ -1,15 +1,6 @@
 <?php 
-session_start();
-if (isset($_SESSION['username'])) {
-$username = $_SESSION['username'];
-$sql_tk = "SELECT * FROM users WHERE username = '$username'";
-$stmt_tk = $conn->query($sql_tk)->fetch();
-
-if ($stmt_tk['role'] == "0") {
-  header('location: ../index.php');
-}}
- ?>
-<?php include('includes/header.php');
+	include'includes/check_login.php';
+	include('includes/header.php');
 	// include "../include/quan_tri.php";
 	require_once "../db.php";
 	$select = "SELECT * from categories ORDER BY ordernum DESC";
@@ -49,7 +40,7 @@ if ($stmt_tk['role'] == "0") {
 							<td><?= $row['ordernum'] ?></td>
 							<td><?= $showtt ?></td>
 							<td><a href="sua_danhmuc.php?id_cate=<?= $row['id_cate'] ?>">Thay đổi</a></td>
-							<td><a href="xoa_danhmuc.php?id_cate=<?= $row['id_cate'] ?>" OnClick="return confirm('Xóa danh mục này ?');">Xóa</a></td>
+							<td><a href="xoa_danhmuc.php?id_cate=<?= $row['id_cate'] ?>" OnClick="return confirm('Xóa danh mục này sẽ xóa hết sản phẩm trong danh mục ?');">Xóa</a></td>
 						</tr>
 						<?php
 					}

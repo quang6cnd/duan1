@@ -1,9 +1,10 @@
 
 <?php
+include'includes/check_login.php';
 include('includes/header.php');
 // include "../include/quan_tri.php";
 require_once "../db.php";
-$sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id = product.id_cate");
+$sttt = $conn->prepare("SELECT product.* , categories.* FROM product INNER JOIN categories ON categories.id_cate = product.id_cate");
 $sttt->execute();
 $result = $sttt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $conn->prepare("SELECT * from categories");
@@ -78,7 +79,7 @@ $mess = "";
             foreach ($categories as $r) {
               ?>
 
-              <option value="<?= $r['id']?>"><?=$r['name_cate']?></option>
+              <option value="<?= $r['id_cate']?>"><?=$r['name_cate']?></option>
               
             </div>
             <?php

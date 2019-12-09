@@ -2,7 +2,7 @@
 	require_once './commons/constants.php';
     require_once 'db.php';
     require_once './commons/helpers.php';
-    $msg = isset($_GET['msg']) ? $_GET['msg'] : "";
+  	include'post_signin.php';
 
  ?>
 <!DOCTYPE html>
@@ -48,14 +48,14 @@
 
 				<form action="post_signin.php" method="post" class="login100-form validate-form" >
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-						<span class="label-input100">Email</span>
-						<input class="input100" type="email" name="email" placeholder="Enter your email">
+						<span class="label-input100">Username:</span>
+						<input class="input100" type="text" name="username" placeholder="Nhập tài khoản">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="password" placeholder="Enter password">
+						<span class="label-input100">Password:</span>
+						<input class="input100" type="password" name="password" placeholder="Mật khẩu">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -75,9 +75,12 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" name="submit" type="submit">
+						<button class="login100-form-btn" name="login" type="submit">
 							Login
 						</button>
+						
+							<a href="signup.php" style="color: #000; line-height: 50px ; margin-left: 30px"> Đăng ký</a>
+						
 					</div>
 				</form>
 			</div>

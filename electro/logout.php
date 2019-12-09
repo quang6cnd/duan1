@@ -1,11 +1,14 @@
 <?php 
-	session_start();
-	
-	if(isset($_SESSION['user']) || isset($_COOKIE['user'])){
-		unset($_SESSION['user']);
-		setcookie("user", "", time()-3600,"/" );
-		unset($_SESSION['role']);
-		setcookie("role", "", time()-3600,"/" );
-		header('location: index.php');
-	}
+		
+		session_start();
+		require_once 'db.php';
+		require_once './commons/constants.php';
+		require_once './commons/helpers.php';
+		if (isset($_SESSION['username'])){
+			unset($_SESSION['username']); // xóa session user
+			
+		}header('location: index.php');
+		
+
+
  ?>

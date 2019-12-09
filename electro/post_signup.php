@@ -31,18 +31,21 @@ if (isset($_POST["submit"])) {
 			}else{
 				echo "Mời bạn chọn file ảnh dưới 1 GB";
 			}
-				$sql="INSERT INTO users (username,password,name,email,address,phone,status,image) VALUES(N'$username',N'$password',N'$name',N'$email',N'$address',N'$phone','status','".$filename."')";
-				$stmt=$conn->prepare($sql);
-				$stmt->execute();
-
-
-			}
 		}
+
+
 	}
+	$sql="INSERT INTO users (username,password,name,email,address,phone,status,image) VALUES(N'$username',N'$password',N'$name',N'$email',N'$address',N'$phone','status','".$filename."')";
+	$stmt=$conn->prepare($sql);
+	$stmt->execute();
+	echo "Bạn đã đăng ký tài khoản thành công";
+	die();
+
+}
 
 
 
 
 
 
-			?>
+?>

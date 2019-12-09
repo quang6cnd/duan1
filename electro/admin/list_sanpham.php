@@ -1,5 +1,6 @@
 
 <?php
+	include'includes/check_login.php';
 	require_once "../db.php";
 
 	require_once '../commons/constants.php';
@@ -45,6 +46,7 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 					//đổ dữ liệu ra
 				foreach($join as $row){
 					$gia_sp = number_format($row['price'], 0, '', ',');
+					$gia_km = number_format($row['price'], 0, '', ',');
 					?>
 					<tr>
 						<!-- 	<td><input name="mang[]"  type="checkbox" value="<?= $row['ma_hh'] ?>"></td> -->
@@ -66,7 +68,7 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 						
 						<td><img style="max-height: 40px" src="../img/<?= $row['image'] ?>" alt=""></td>
 						<td><?= $gia_sp ?> VND</td>
-						<td><?= $row['sale_price'] ?> %</td>
+						<td><?= $gia_km ?> VND</td>
 						<td><?= $row['amount'] ?></td>
 						<td><?= $row['rating'] ?></td>
 						<td><?= $row['status'] ?></td>
