@@ -3,16 +3,6 @@ session_start();
 require_once './commons/constants.php';
 require_once"db.php";
 require_once"commons/helpers.php";
-$id_cate=$_GET['id_cate'];
-$sql="SELECT * FROM  categories  ";
-$stmt=$conn->prepare($sql);
-$stmt->execute();
-$cate=$stmt->fetchAll(PDO::FETCH_ASSOC);
-
-$mysql="SELECT * FROM product  WHERE id_cate='$id_cate' ";
-$stmt=$conn->prepare($mysql);
-$stmt->execute();
-$result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -75,12 +65,7 @@ $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 					<!-- STORE -->
 					<div id="store" class="col-md-9">
 						<!-- store top filter -->
-						<!-- <div class="store-filter clearfix">
-							<div class="store-sort">
-								<input type="search" name="" placeholder="search for products" ><button type="search"><i class="fa fa-search" aria-hidden="true"></i></button>
-							</div>
-							
-						</div> -->
+					
 						<!-- /store top filter -->
 
 						<!-- store products -->
@@ -91,8 +76,36 @@ $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
-										<!-- product -->
 										<?php
+											$ma_hh = "";
+											if(isset($_POST['btn_search'])){
+												
+												$srchTxt = $_POST['srchTxt'];
+												if($srchTxt == ""){
+													echo "<script>alert('Vui lòng nhập từ khóa')</script>";
+													header('location: index.php');
+												}else{
+													
+													// echo $search_value;
+														$sql = "SELECT * FROM product WHERE nameproduct LIKE '%$srchTxt%' limit 9";
+													}
+												//truy vấn
+													$stmt = $conn->prepare($sql);
+													$stmt->execute();
+													$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+													if($stmt->rowCount() > 0){
+													}else{
+														echo "<script>alert('Không tìm ra sản phẩm !')</script>";
+													}
+												}
+											
+
+										?>	
+										<?php
+										if (isset($result)) {
+											
 										foreach ($result as $product) {
 
 											?>
@@ -117,6 +130,7 @@ $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 															<i class="<?php echo $starClass ?>"></i>
 															<?php
 														}
+													
 														?>
 													</div>
 													<div class="product-btns">
@@ -129,6 +143,9 @@ $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 											</div>
 											<?php
 										}
+
+									}
+							
 										?>
 										<!-- /product -->
 

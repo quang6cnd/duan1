@@ -65,17 +65,16 @@
 								?>
 							</td> -->
 							<td class="action">
-								<?php
-									if($row['role'] == 1){
-										?>
-										<a href="sua_user.php?id=<?= $row['id'] ?>">Cập nhật</a>
-										<?php
-									}
-								?>
+								
+									
+										<a href="sua_user.php?id_user=<?= $row['id_user'] ?>">Cập nhật</a>
+									
+									
+								
 								<?php
 									if($row['role'] == 0){
 										?>
-										&#160;<a href="xoa_user.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Tài khoản này ?');">Xóa</a>
+										&#160;<a href="xoa_user.php?id_user=<?= $row['id_user'] ?>" OnClick="return confirm('Xóa Tài khoản này ?');">Xóa</a>
 										<?php
 									}
 								?>

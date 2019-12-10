@@ -8,7 +8,7 @@
 include'includes/check_login.php';
 include('includes/header.php');
 require_once "../db.php";
-$select = "SELECT * from users";
+$select = "SELECT * from admin";
 $stmt = $conn->prepare($select);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ $mess = "";
 				$mess = "Vui lòng điền đầy đủ thông tin cần thiết";
 			}else{
       //Sql create
-				$update_ad = "UPDATE users set username='$username', name='$name', image='$image', email='$email', role='$role' ,status='$status' where id_user='$id_user'";
+				$update_ad = "UPDATE admin set username='$username', name='$name', image='$image', email='$email', role='$role' ,status='$status' where id_admin='$id_admin'";
 				$stmt = $conn->prepare($update_ad);
 				$stmt->execute();
       //Check
@@ -53,9 +53,9 @@ $mess = "";
 				}
 			} 
 		}
-		if(isset($_GET['id_user'])){
-          $id_user = $_GET['id_user'];
-          $stmt = $conn->prepare("SELECT * from users where id_user=$id_user");
+		if(isset($_GET['id_admin'])){
+          $id_admin = $_GET['id_admin'];
+          $stmt = $conn->prepare("SELECT * from admin where id_admin=$id_admin");
           $stmt->execute();
           $users = $stmt->fetch();
         }
@@ -89,8 +89,8 @@ $mess = "";
 
 			<div class="form-group">
 				<label for="" style="display: block;">Trạng thái</label>
-				<label for="" class="radio-inline"><input type="radio" name="status" value="1" checked="checked">Hoạt động</label>
-				<label for="" class="radio-inline"><input type="radio" name="status" value="0">Không hoạt động</label>
+				<label for="" class="radio-inline"><input type="radio" name="status" value="1" checked="checked">Hiển thị</label>
+				<label for="" class="radio-inline"><input type="radio" name="status" value="0">Không hiển thị</label>
 			</div>
 			<div class="form-group">
 				<!-- <label for="" style="display: block;">Quyền</label> -->

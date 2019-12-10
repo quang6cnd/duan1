@@ -87,7 +87,7 @@
                                 </li>
                             </div>
                             <div class="button text-right">
-                                <a class="btn btn-default" href="home.php" onclick="window.history.back()">Tiếp tục mua hàng</a>
+                                <a class="btn btn-default" href="index.php" onclick="window.history.back()">Tiếp tục mua hàng</a>
                                 <a class="btn btn-primary" href="checkout.php">Tiến hành thanh toán</a>
                             </div>
                         </div>

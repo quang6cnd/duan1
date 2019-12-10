@@ -1,7 +1,8 @@
 <?php 
 require_once"db.php";
 require_once"commons/helpers.php";
-require_once"commons/constants.php";
+session_start();
+require_once './commons/constants.php';
 $id = $_GET['id'];
 $mysql = "SELECT * from product where id='$id'";
 $stmt = $conn->prepare($mysql);
@@ -95,7 +96,7 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 								
 							</div>
 							<div>
-								<h3 class="product-price"><?php echo number_format($intro['sale_price']);  ?> VND <del class="product-old-price"><?php echo number_format($intro['price']);  ?>d</del></h3>
+								<h3 class="product-price"><?php echo number_format($intro['sale_price']);  ?> VND <del class="product-old-price"><?php echo number_format($intro['price']);  ?> VND</del></h3>
 								<span class="product-available"> Số luợng: <?=$intro['amount']?></span>
 							</div>
 							<p><?=$intro['detail']?></p>
@@ -156,105 +157,114 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
 							<div id="tab3" class="tab-pane fade in">
 								<div class="row">
-									<!-- Rating -->
+									
 									<div id="comment">
+								<?php 
+								$sql_all_bl = "SELECT * FROM comment WHERE id = '$id' ORDER BY id_comment DESC limit 5";
+								$stmt_all_bl = $conn->prepare($sql_all_bl);
+								$stmt_all_bl->execute();
+								$col = $stmt_all_bl->fetchALL(PDO::FETCH_ASSOC);
+								?>
 										
 									</div>
-									<div class="col-md-3">
-										<div id="rating">
-											<div class="rating-avg">
-												<span>4.5</span>
-												<div class="rating-stars">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-											</div>
-
-										</div>
-									</div>
-									<!-- /Rating -->
+									
+								
 
 									<!-- Reviews -->
 
 								</div>
 								<div class="col-md-6">
+									<?php 
+										foreach ($col as $cmt) {
+											# code...
+										
+									 ?>
 									<div id="reviews">
 										<ul class="reviews">
 											<li>
 												<div class="review-heading">
-													<h5 class="name">John</h5>
-													<p class="date">27 DEC 2018, 8:0 PM</p>
+													<h5 class="name"><?=$cmt['username']?></h5>
+													<p class="date"><?=$cmt['date_bl'] ?></p>
 													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
+														<?php 
+									for($i = 1; $i <= 5; $i++){
+										if($cmt['rating'] >= $i){
+											$star = "fa fa-star";
+										}else{
+											$star = "fa fa-star-o";
+										}
+										?>
+										<i class="<?php echo $star ?>"></i>
+										<?php
+									}
+									?>
 													</div>
 												</div>
 												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+													<p><?=$cmt['content']?></p>
 												</div>
 											</li>
-											<li>
-												<div class="review-heading">
-													<h5 class="name">John</h5>
-													<p class="date">27 DEC 2018, 8:0 PM</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-												</div>
-											</li>
-											<li>
-												<div class="review-heading">
-													<h5 class="name">John</h5>
-													<p class="date">27 DEC 2018, 8:0 PM</p>
-													<div class="review-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o empty"></i>
-													</div>
-												</div>
-												<div class="review-body">
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-												</div>
-											</li>
+											
 										</ul>
 
 									</div>
+									<?php } ?>
 								</div>
+								
 								<!-- /Reviews -->
+								
+								<?php 
+								
+						$message = "";
+						if (isset($_POST['create_bl'])) {
+							if (isset($_SESSION['username'])) {
+								extract($_REQUEST);
+								$username = $_SESSION['username'];
+								
+								if (empty($content)) {
+									$message = "Bạn chưa nhập bình luận !";
+								}
+
+							}else{
+							// 		echo "<script>alert('Bạn cần đăng nhập để bình luận')</script>";
+								$message = "Bạn phải đăng nhập thì mới có thể bình luận !";
+							}
+
+							if ($message == "") {
+									$date_bl = date('Y/m/d');
+									
+									$sql_bl = "INSERT INTO comment(content,date_bl,rating,username,id) VALUES('$content','$date_bl','$rating','$username','$id')";
+									$stmt_bl = $conn->prepare($sql_bl);
+									$stmt_bl->execute();
+
+									if ($stmt_bl->rowCount() >0) {
+										echo "<meta http-equiv='refresh' content='0'>";
+									}else{
+										$message = 'Thất bại !';
+									}
+								}
+						}
+					?>
+
 
 								<!-- Review Form -->
 								<div class="col-md-3">
+									<div style="color: red"><? $message ?></div>
 									<div id="review-form">
-										<form class="review-form">
-											<input class="input" type="text" placeholder="Your Name">
-											<input class="input" type="email" placeholder="Your Email">
-											<textarea class="input" placeholder="Your Review"></textarea>
+										<form class="review-form" action="" method="post">
+											
+											<textarea class="input" name="content" placeholder="Your Review"></textarea>
 											<div class="input-rating">
 												<span>Your Rating: </span>
 												<div class="stars">
-													<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-													<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-													<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-													<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-													<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+													<input id="star5" name="rating" value="5" type="radio"><label for="star5" name="rating" value="5"></label>
+													<input id="star4" name="rating" value="4" type="radio"><label for="star4" name="rating" value="4"></label>
+													<input id="star3" name="rating" value="3" type="radio"><label for="star3" name="rating" value="3"></label>
+													<input id="star2" name="rating" value="2" type="radio"><label for="star2" name="rating" value="3"></label>
+													<input id="star1" name="rating" value="1" type="radio"><label for="star1" name="rating" value="1"></label>
 												</div>
 											</div>
-											<button class="primary-btn">Submit</button>
+											<button class="primary-btn" name="create_bl">Submit</button>
 										</form>
 									</div>
 								</div>

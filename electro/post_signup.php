@@ -39,7 +39,7 @@ if (isset($_POST["submit"])) {
 	$stmt=$conn->prepare($sql);
 	$stmt->execute();
 	echo "Bạn đã đăng ký tài khoản thành công";
-	die();
+	header('location: signin.php');
 
 }
 

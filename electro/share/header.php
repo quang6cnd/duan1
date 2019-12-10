@@ -59,7 +59,7 @@ $totalPrice = 0;
 				<!-- LOGO -->
 				<div class="col-md-3">
 					<div class="header-logo">
-						<a href="home.php" class="logo">
+						<a href="index.php" class="logo">
 							<img src="./img/logo.png" alt="">
 						</a>
 					</div>
@@ -69,12 +69,12 @@ $totalPrice = 0;
 				<!-- SEARCH BAR -->
 				<div class="col-md-6">
 					<div class="header-search">
-						<form>
+						<form action="search.php" method="post">
 									<!-- <select class="input-select">
 										<option value="0">All Categories</option>
 									</select> -->
-									<input class="input" placeholder="Search here" name="nameproduct">
-									<button class="search-btn" name="buttonSearch">Search</button>
+									<input class="input" placeholder="Search here" name="srchTxt">
+									<button class="search-btn" type="submit" name="btn_search">Search</button>
 								</form>
 							</div>
 						</div>

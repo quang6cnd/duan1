@@ -41,7 +41,7 @@
 							
 							<td><?= $row['id_slide'] ?></td>
 							<td><?= $row['detail'] ?></td>
-							<td><img style="height: 100px" src="../img/<?= $row['image'] ?>" alt=""></td>
+							<td><img style="height: 100px" src="../slide/<?= $row['image'] ?>" alt=""></td>
 							<td><?= $row['link'] ?></td>
 							<td><?= $showtt ?></td>
 							<td><a href="sua_slider.php?id_slide=<?= $row['id_slide'] ?>">Thay đổi</a></td>

@@ -122,11 +122,7 @@
 							</label>
 						</div>
 
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
+						
 					</div>
 
 					<div class="container-login100-form-btn">

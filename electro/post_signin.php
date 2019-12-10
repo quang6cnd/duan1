@@ -1,59 +1,40 @@
 <?php 
-	include 'db.php';
-	session_start();
-	$message = '';
-	$check_user = "";
-	$sql = "SELECT * FROM users";
-	$stmt = $conn->prepare($sql);
+session_start();
+require_once 'db.php';
+require_once './commons/constants.php';
+require_once './commons/helpers.php';
+$sql="select * from roles inner join users on roles.id = users.role";
+$stmt=$conn->prepare($sql);
+$stmt->execute();
+$role=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (isset($_POST['submit'])) {
+	$email=$_POST['email'];
+	$password=$_POST['password'];
+
+	$mysql="SELECT * FROM  users WHERE email = '$email'";
+	$stmt=$conn->prepare($mysql);
 	$stmt->execute();
-	$result = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
-	if (isset($_POST['login'])) {
-		extract($_REQUEST);
-		$new_pass = md5($password);
-
-		// Check tài khoản tồn tại không
-		foreach ($result as $row) {
-				if ($row['username'] != $username) {
-					$check_user = 'false';
-				}else{
-					$check_user = '';
-					break;
-				}
-			}
-
-		if (empty($username)) {
-			$message = "Bạn chưa nhập tài khoản !<br>";
-		}elseif($check_user == 'false'){
-			$message .= "Tài khoản không tồn tại !<br>";
-		}
-
-		
-		$sql_check_tk = "SELECT * FROM users WHERE username = '$username'";
-		$stmt_check_tk = $conn->query($sql_check_tk)->fetch();
-
-		if (empty($password)) {
-			$message .= "Bạn chưa nhập mật khẩu !<br>"; 
-		}elseif($new_pass != $stmt_check_tk['password']){
-			$message .= "Mật khẩu không đúng !<br>";
-		}
-
-		if ($stmt_check_tk['username'] == $username && $stmt_check_tk['password'] == $new_pass) {
-			
-			
-			if ($stmt_check_tk['status'] == '1') {
-				header('location: index.php');
-				$_SESSION['username'] = $username;
-				$_SESSION['password'] = $new_pass;
-			}elseif($stmt_check_tk['status'] == '0'){
-				echo "<script>alert('tài khoản hoặc mật khẩu không đúng')</script>";
-				$_SESSION['username'] = $username;
-				$_SESSION['password'] = $new_pass;
-			}
+	$acc=$stmt->fetch();
+	if ($acc && password_verify($password, $acc['password'])) {
+		$_SESSION[AUTHIES] = [
+			"id" => $acc['id'],
+			"username" => $acc['username'],
+			"name" => $acc['name'],
+			"email" => $acc['email'],
+			"address" => $acc['address'],
+			"image" => $acc['image'],
+			"status" => $acc['status'],
+			"role" => $acc['role'],
+		];
+		if(isset($_SESSION[AUTHIES]['role'])==1){
+			header("location:admin/index.php");
 		}else{
-			$message .= "Đăng nhập thất bại !";
+			header("location: index.php");
+			die();
 		}
-		//
 	}
-
+	header('location: ' . BASE_URL . 'signin.php?msg=Email/Mật khẩu không đúng');
+	
+}
 ?>
