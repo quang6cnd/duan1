@@ -24,6 +24,10 @@
                 <li>
                     <a href="list_sanpham.php">Danh sách</a>
                 </li>
+                <li>
+                    <a href="gallery.php">Thêm ảnh sản phẩm</a>
+                </li>
+
             </ul>
         </li>
         <!-- <li>

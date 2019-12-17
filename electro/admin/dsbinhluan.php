@@ -4,7 +4,7 @@
 	require_once "../db.php";
 	// include "../include/quan_tri.php";
 	
-    $stmt = $conn->prepare("SELECT product_id, MAX(date_bl) , MIN(date_bl), COUNT(1) FROM comment GROUP BY product_id HAVING COUNT(1) > 0");
+    $stmt = $conn->prepare("SELECT id, MAX(date_bl) , MIN(date_bl), COUNT(1) FROM comment GROUP BY id HAVING COUNT(1) > 0");
     // $stmt = $conn->prepare("");
 	$stmt->execute();
 	$binhluan = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -61,14 +61,14 @@
 					foreach($binhluan as $row){
 					?>
 						<tr>
-							<td><?= $row['product_id'] ?></td>
+							<td><?= $row['id'] ?></td>
 							<td>
 								<?= $row['COUNT(1)'] ?>
 							</td>
 							<td><?= $row['MAX(date_bl)'] ?></td>
 							<td><?= $row['MIN(date_bl)'] ?></td>
 							<td class="action">
-								<a href="chitietbinhluan.php?product_id=<?= $row['product_id'] ?>">Chi tiết</a>
+								<a href="chitietbinhluan.php?id=<?= $row['id'] ?>">Chi tiết</a>
 							</td>
 						</tr>
 					<?php

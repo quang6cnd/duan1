@@ -2,47 +2,41 @@
 session_start();
 $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
 
-$totalPrice = 0;
+// $totalPrice = 0;
     // var_dump($cart);die;
 ?>
 <?php 
-require_once 'db.php';
-$mess="";
-if(isset($_POST['btn_cart'])){
-			// //Lấy mã hàng hóa đang select
-			// $ma_hh = $_GET['ma_hh'];
-			// extract($_REQUEST);
-			// //Lấy id tài khoản khi đã đăng nhập
-			// if(isset($_SESSION['user'])){
-			// 	$ma_kh = $_SESSION['user'];
-			// }else if(isset($_COOKIE['user'])){
-			// 	$ma_kh = $_COOKIE['user'];
-			// }
-			// //Kiểm tra
-	if(empty($name_user)){
-		$mess = "Điền tên !";
-			}else if(empty($address)){//Nếu thiếu id tài khoản
-				$mess = "Vui lòng điền địa chỉ !";
-			}else if(empty($email)){
-				$mess = "Vui lòng nhập email ! ";
-			}else if(empty($date_cart)){
-				$mess = "Lỗi thời gian";
-			}else if(empty($phone)){
-				$mess = "Vui lòng nhập sđt! ";
-			}else{
-				$create_cart = "INSERT into cart(user_name, address, email, date_cart, phone, total, status,order_note) values('$user_name', '$address', $email, '$date_cart', '$phone', '$totalo','$status', '$order_note')";
-				$stmt = $conn->prepare($create_cart);
-				$stmt->execute();
-				if($stmt->rowCount() > 0){
-					//Load lại trang
-					$mess = "Đơn hàng đã được tạo thành công!";
-				}else{
-					$mess = "Tạo đơn hàng thất bại ! ";
-				}
-			}
+		  require_once "db.php";
+      $select = "SELECT * from cart";
+      $stmt = $conn->prepare($select);
+      $stmt->execute();
+      $slide = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $mess = "";
 
-		}
-		?>
+		if(isset($_POST['btn_cart'])){
+   		 extract($_REQUEST);
+    
+    if($name_user == "" || $address == "" || $email == "" || $phone == ""  ){
+      $mess = "Vui lòng điền đầy đủ thông tin cần thiết";
+    }else{
+      //Sql create
+    	$date_cart = date('Y/m/d');
+      $create_cart = "INSERT into cart(name_user, address,  email, phone, date_cart, total, order_note) values('$name_user', '$address', '$email', '$phone', 'date_cart', '$totalPrice', '$order_note')";
+      $stmt = $conn->prepare($create_cart);
+      $stmt->execute();
+      //Check
+      if($stmt->rowCount() > 0){
+      //Chuyển trang
+       
+          
+         echo "<script> aleart(Tạo đơn hàng thành công)</script>";
+      }else{
+        $mess = "Không thể thêm dữ liệu";
+      }
+    } 
+  }
+   ?>
+
 		<DOCTYPE html>
 			<html lang="en">
 			<head>
@@ -88,6 +82,7 @@ if(isset($_POST['btn_cart'])){
 
 
 		<!-- BREADCRUMB -->
+
 		<div id="breadcrumb" class="section">
 			<!-- container -->
 			<div class="container">
@@ -106,9 +101,12 @@ if(isset($_POST['btn_cart'])){
 			<!-- /container -->
 		</div>
 		<!-- /BREADCRUMB -->
-
+<div style="color: red ; text-align: center;">
+						<?=$mess ?> 
+					</div>
 		<!-- SECTION -->
 		<div class="section">
+			
 			<!-- container -->
 			<div class="container">
 				<!-- row -->
@@ -121,9 +119,9 @@ if(isset($_POST['btn_cart'])){
 							<div class="section-title">
 								<h3 class="title">Thanh toán</h3>
 							</div>
-							<form action="" method="POST">
+							<form action="" method="POST" enctype="multipart/form-data">
 								<div class="form-group">
-									<input class="input" type="text" name="user_name" placeholder="Điền tên">
+									<input class="input" type="text" name="name_user" placeholder="Điền tên">
 								</div>
 								<div class="form-group">
 									<input class="input" type="text" name="address" placeholder="Địa chỉ">
@@ -135,10 +133,10 @@ if(isset($_POST['btn_cart'])){
 									<input class="input" type="text" name="phone" placeholder="Số điện thoại">
 								</div>
 								<?php
-								date_default_timezone_set('Asia/Ho_Chi_Minh');
-								date_create('now')->format('Y-m-d  H:i:s');
+								// date_default_timezone_set('Asia/Ho_Chi_Minh');
+								// date_create('now')->format('Y-m-d  H:i:s');
 								?>
-								<input type="hidden" name="date_cart" style="height: 38px" value="<?php echo date('Y-m-d  H:i:s'); ?>" />
+								<!-- <input type="hidden" name="date_cart" style="height: 38px" value="<?php echo date('Y-m-d  H:i:s'); ?>" /> -->
 								<input type="hidden" name="status" style="height: 38px" value="0">
 
 
@@ -196,7 +194,7 @@ if(isset($_POST['btn_cart'])){
 							</div>
 							<div class="order-col">
 								<div><strong>Tổng đơn</strong></div>
-								<div><strong class="order-total"><?php echo number_format($totalPrice); ?>.000 vnđ</strong></div>
+								<div><strong class="order-total"><input type="hidden" name="totalPrice" value="<?php $totalPrice ?>"><?php echo number_format($totalPrice); ?>.000 vnđ</strong></div>
 							</div>
 						</div>
 						<!-- <div class="payment-method">
@@ -238,6 +236,7 @@ if(isset($_POST['btn_cart'])){
 								I've read and accept the <a href="#">terms & conditions</a>
 							</label>
 						</div> -->
+
 						<input type="submit" style="margin-right: 15px" class="primary-btn order-submit" name="btn_cart" value="Gửi">
 						<!-- <input type="submit" class="" name="btn_cart" value="Gửi" -->
 						

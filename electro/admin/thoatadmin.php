@@ -1,8 +1,8 @@
 ﻿<?php 
-// session_start();
+session_start();
 // session_destroy();//Xóa hết session
 // header('Location: ../index.php');
-session_start();
+// session_start();
 
 if (isset($_SESSION['username'])){
     unset($_SESSION['username']); // xóa session login

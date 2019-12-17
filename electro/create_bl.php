@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 								
 						$message = "";
 						if (isset($_POST['create_bl'])) {

@@ -4,12 +4,12 @@
 	require_once "../db.php";
 	// include "../include/quan_tri.php";
 	
-   $product_id = "";
-	if(isset($_GET['product_id'])){
-		$product_id= $_GET['product_id'];
+   $id = "";
+	if(isset($_GET['id'])){
+		$id= $_GET['id'];
 	}
 	//
-	$stmt = $conn->prepare("SELECT product.image, product.name from product where product_id=$product_id");
+	$stmt = $conn->prepare("SELECT product.image, product.name from product where id=$id");
 	$stmt->execute();
 	$sanpham = $stmt->fetch();
 	//
@@ -18,7 +18,7 @@
 		From comment,product,users
 		where product.product_id = comment.product_id
 		and users.username = comment.username
-		and comment.product_id=$product_id");
+		and comment.id=$id");
     // $stmt = $conn->prepare("");
 	$stmt->execute();
 	$binhluan = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -76,7 +76,7 @@
 						$date_bl1 = nicetime($dem_tg);
 					?>
 						<tr>
-							<td><?= $row['user_id'] ?></td>
+							<td><?= $row['username'] ?></td>
 							<td><img style="width: 70px" src="../img/user/<?= $row['images'] ?>" alt=""></td>
 							<td><?= $row['email'] ?></td>
 							<td><?= $row['content'] ?></td>

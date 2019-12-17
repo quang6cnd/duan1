@@ -44,6 +44,6 @@ if(!isset($_SESSION[CART]) || $_SESSION[CART] == null){
 
 }
 
-header('location: home.php');
+header('location: product_summary.php');
 
 ?>

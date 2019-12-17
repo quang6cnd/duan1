@@ -72,20 +72,21 @@
 									<a href="" title=""><img src="slide/<?= $value['image'] ?>" style="width:100%;height: 500px;background-size: cover"></a>
 									<div class="text" ></div>
 								</div>
-							<?php endforeach; ?>
+						
 
 
 							<!-- Next and previous buttons -->
 							<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 							<a class="next" onclick="plusSlides(1)">&#10095;</a>
 							<div style="text-align:center;position: relative;">
-								<span class="dot" onclick="currentSlide(1)"></span> 
-								<span class="dot" onclick="currentSlide(2)"></span> 
-								<span class="dot" onclick="currentSlide(3)"></span> 
+								<span class="dot" onclick="currentSlide(1)" style="background-color: #fff"></span> 
+								<!-- <span class="dot" onclick="currentSlide(2)"></span> 
+								<span class="dot" onclick="currentSlide(3)"></span>  -->
 								<!-- <span class="dot" onclick="currentSlide(4)"></span> 
 								<span class="dot" onclick="currentSlide(5)"></span> 
 								<span class="dot" onclick="currentSlide(6)"></span>  -->
 							</div>
+								<?php endforeach; ?>
 						</div>
 
 						<br>
@@ -109,8 +110,8 @@
 									}
 									slides[slideIndex-1].style.display = "block";  
 									dots[slideIndex-1].className += " active";
-		  setTimeout(showSlides, 2000); // Change image every 2 seconds
-		}
+		 						 setTimeout(showSlides, 2000); // Change image every 2 seconds
+								}
 		</script>
 		<!-- /row -->
 		</div>

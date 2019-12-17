@@ -19,7 +19,9 @@ include('includes/header.php');
          if(empty($name_cate)){
             $mess = "Chưa nhập danh mục";
           }else if(empty($ordernum)){
-            $mess = "Chưa nhập thứ tự hiển thị";
+            $mess = "Chưa nhập thứ tự hiển thị"; 
+          }else if($ordernum <= 0){
+            $mess = "Số thứ tự hiện phải lớn hơn 0";   
           }else if(empty($show_menu)){
             $mess = "Chưa tích trạng thái";
           }else{
@@ -59,7 +61,7 @@ include('includes/header.php');
 
     <div class="form-group">
      <label for="">Thứ tự</label>
-     <input type="text" name="ordernum" class="form-control" placeholder="Thứ tự">
+     <input type="text" min="0" name="ordernum" class="form-control" placeholder="Thứ tự">
    </div>
    <div class="form-group">
      <label for="" style="display: block;">Trạng thái</label>

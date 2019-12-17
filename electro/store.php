@@ -103,8 +103,7 @@ $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><?php echo $product['nameproduct'] ?></h3>
-													<h4 class="product-price"><?php echo number_format($product['sale_price'] );?>$</h4>
-														<del><?php echo number_format($product['price']); ?>$</del>
+													<h4 class="product-price"><?php echo $product['sale_price'] ?> VND <del class="product-old-price"><?php echo $product['price'] ?> VND </del></h4>
 													<div class="product-rating">
 														<?php 
 														for($i = 1; $i <= 5; $i++){

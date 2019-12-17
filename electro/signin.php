@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 	require_once './commons/constants.php';
     require_once 'db.php';
     require_once './commons/helpers.php';
@@ -45,7 +45,9 @@
 						Sign In
 					</span>
 				</div>
-
+					<div style="color: red ; text-align: center;">
+						<?=$message ?> 
+					</div>
 				<form action="post_signin.php" method="post" class="login100-form validate-form" >
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username:</span>

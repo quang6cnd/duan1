@@ -34,8 +34,8 @@
     }else if($xac_nhan != $password){
       $mess = "Mật khẩu không trùng khớp";
     }else{
-      //Sql create
-      $create_kh = "INSERT into users(username, password, name, status, image, email, role) values('$username', '$password', '$name', '$status', '$image', '$email', '$role')";
+      $new_pass = md5($password);
+      $create_kh = "INSERT into admin(username, password, name, status, image, email, role) values('$username', '$new_pass', '$name', '$status', '$image', '$email', '$role')";
       $stmt = $conn->prepare($create_kh);
       $stmt->execute();
       //Check

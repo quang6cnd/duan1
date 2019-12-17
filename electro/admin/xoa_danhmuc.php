@@ -11,6 +11,10 @@ if(isset($_GET['id_cate'])){
 		$delete_hh = "DELETE FROM product WHERE id_cate=$id_cate";
 		$stmt = $conn->prepare($delete_hh);
 		$stmt->execute();
+		//xóa bình luận 
+		$delete_bl = "DELETE from comment where id=$id";
+		$sttt = $conn->prepare($delete_bl);
+		$sttt->execute();
 		//Check
 		if($stmt->rowCount() > 0){
 			header('location: list_danhmucsp.php');

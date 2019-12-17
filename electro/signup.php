@@ -8,7 +8,9 @@
 
 	<title>Sign UP</title>
 
-	<?php include("share/style.php"); ?>
+	<?php
+	 session_start();
+	 include("share/style.php"); ?>
 
 </head>
 <body>
@@ -22,17 +24,24 @@
 	<!-- SECTION -->
 	<div id="signin">
 		<h2>Sign up</h2>
-		<form action="post_signup.php" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+		
+      <?php 
+        if (isset($mess)) {
+          echo $mess;
+        }
+        ?>
+		<form action="post_signup.php" name="btn_user" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
 			<input type="text" id="username" placeholder="username" name="username"><br>
 			<input type="password" id="password" placeholder="Password" name="password"><br>
-			<input type="password" id="confirm" placeholder="Confirm password" name="confirm"><br>
+			<input type="password" id="confirm" placeholder="Confirm password" name="xac_nhan"><br>
 			<input type="text" id="name" placeholder="full name" name="name"><br>
 			<input type="text" id="email" placeholder="email" name="email">
 			<input type="text" id="address" placeholder="address" name="address" ><br>
 			<input type="text" id="phone"  min="0" placeholder="Phone number" name="phone"><br>
-			<input type="checkbox" name="status" value="1" style="width: 20px; margin-left: -200px;"> Xác nhận đăng ký
-			<input type="file" id="image"  name="file"><br>
-			<button type="submit" class="in"  name="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Creat account</button><br>
+			<input type="hidden" name="status" value="1" style="width: 20px; margin-left: -200px;">
+			<input type="hidden" name="role" value="0">
+			<input type="file" id="image"  name="anh"><br>
+			<button type="submit" class="in"  name="btn_user"><i class="fa fa-sign-in" aria-hidden="true"></i> Creat account</button><br>
 			<h3><a href="signin.php" title="">Sign in</a></h3>
 		</form>
 		

@@ -52,7 +52,7 @@
                                                     <td>
                                                         <div class="cart-img">
                                                             <a href="#">
-                                                                <img src="img/<?php echo $item['feature_image'] ?>" alt="">
+                                                                <img src="img/<?php echo $item['feature_image'] ?>" alt="" style="width: 250px; height: auto;">
                                                             </a>
                                                         </div>
                                                     </td>
@@ -61,7 +61,7 @@
                                                     <td>
                                                         <div class="cart-action">
                                                             <input type="number" min="0" name="quantity" class="form-control cart-quantity" value="<?php echo $item['quantity'] ?>"/><br>
-                                                            <button class="btn btn-default" type="submit"><i class="fa fa-refresh"></i>
+                                                            <button class="btn btn-default" type="submit"><a href="product_summary.php"><i class="fa fa-refresh"></i></a>
                                                             </button>
                                                             <a class="btn btn-danger btn-sm" href="remove_cart_item.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Bạn muốn xóa sản phẩm ?')">
                                                                 <i class="fa fa-trash"></i>

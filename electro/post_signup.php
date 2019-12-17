@@ -1,51 +1,42 @@
-<?php 
-session_start();
-require_once './commons/constants.php';
-require_once 'db.php';
-require_once './commons/helpers.php';
-$message="";
-if (isset($_POST["submit"])) {
-	$username=$_POST['username'];
-	$password= password_hash($_POST['password'],PASSWORD_DEFAULT);
-	$confirm= password_hash($_POST['confirm'],PASSWORD_DEFAULT);
-	$name=$_POST['name'];
-	$email=$_POST['email'];
-	$address=$_POST['address'];
-	$phone=$_POST['phone'];
-	$status=$_POST['status'];
-	$image=$_FILES['file'];
-	if(isset($_FILES['file']['name'])){
-		$filename=$_FILES['file']['name'];
-		$fileType=$_FILES['file']['type'];
-		$fileSize=$_FILES['file']['size'];
-		$fileTmpName=$_FILES['file']['tmp_name'];
-		$fileErro=$_FILES['file']['error'];
-		if ($fileErro===0) {
-			if ($fileSize<=1000000) {
-				$fileDestination="img/".$filename;
-				if(move_uploaded_file($fileTmpName,$fileDestination)){
-					echo "đã cập nhập ảnh thành công";  
-				}else{
-					echo "cập nhật ảnh thất bại";
-				}
-			}else{
-				echo "Mời bạn chọn file ảnh dưới 1 GB";
-			}
-		}
+<?php session_start();
+		  require_once "db.php";
+      $select = "SELECT * from users";
+      $stmt = $conn->prepare($select);
+      $stmt->execute();
+      $slide = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $mess = "";
 
+		if(isset($_POST['btn_user'])){
+   		 extract($_REQUEST);
+    //Ảnh
+       //Ảnh
+        if($_FILES['anh']['name'] == ""){
+          $mess = "Chưa chọn ảnh";
+        }else{
+          $image = $_FILES['anh']['name'];
+          move_uploaded_file($_FILES['anh']['tmp_name'], "../img/".$image);
+        }
 
-	}
-	$sql="INSERT INTO users (username,password,name,email,address,phone,status,image) VALUES(N'$username',N'$password',N'$name',N'$email',N'$address',N'$phone','status','".$filename."')";
-	$stmt=$conn->prepare($sql);
-	$stmt->execute();
-	echo "Bạn đã đăng ký tài khoản thành công";
-	header('location: signin.php');
-
-}
-
-
-
-
-
-
-?>
+    ///Kiểm tra
+    if($username == "" || $name == "" || $password == "" ){
+      $mess = "Vui lòng điền đầy đủ thông tin cần thiết";
+    }else if($xac_nhan != $password){
+      $mess = "Mật khẩu không trùng khớp";
+    }else{
+      //Sql create
+    	$new_pass = md5($password);
+      $create_kh = "INSERT into users(username, password, name,  email, address, phone, image, status) values('$username', '$new_pass', '$name', '$email', 'address', '$phone', '$image','$status')";
+      $stmt = $conn->prepare($create_kh);
+      $stmt->execute();
+      //Check
+      if($stmt->rowCount() > 0){
+      //Chuyển trang
+       
+          
+          header('location: signin.php');
+      }else{
+        $mess = "Không thể thêm dữ liệu";
+      }
+    } 
+  }
+   ?>
