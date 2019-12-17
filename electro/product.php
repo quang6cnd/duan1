@@ -19,6 +19,8 @@ $sql="SELECT * FROM product INNER JOIN categories ON product.id_cate=categories.
 $stmt=$conn->prepare($sql);
 $stmt->execute();
 $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
+$cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
+
 
 
 ?>

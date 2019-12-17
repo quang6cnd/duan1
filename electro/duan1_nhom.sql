@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 11, 2019 lúc 11:15 AM
+-- Thời gian đã tạo: Th12 17, 2019 lúc 05:53 PM
 -- Phiên bản máy phục vụ: 10.4.10-MariaDB
 -- Phiên bản PHP: 7.3.12
 
@@ -55,15 +55,13 @@ INSERT INTO `admin` (`id_admin`, `username`, `name`, `password`, `email`, `image
 --
 
 CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_sp` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
   `name_user` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(11) NOT NULL,
   `date_cart` date NOT NULL,
-  `total` int(255) NOT NULL,
+  `totalPrice` varchar(255) NOT NULL,
   `status` int(11) NOT NULL,
   `order_note` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -72,12 +70,9 @@ CREATE TABLE `cart` (
 -- Đang đổ dữ liệu cho bảng `cart`
 --
 
-INSERT INTO `cart` (`id`, `id_user`, `id_sp`, `name_user`, `address`, `email`, `phone`, `date_cart`, `total`, `status`, `order_note`) VALUES
-(1, 19, 0, 'Trần Văn Quang', 'Công viên Nghĩa Đô', 'demo@gmail.com', '0359316477', '2019-12-06', 1500000, 1, 'dâdzzcx'),
-(2, 20, 0, 'Trần Quang', 'Bến xe Giáp Bát', 'demo1@gmail.com', '0354937274', '2019-12-03', 1800000, 0, '12384'),
-(9, 0, 0, 'Trần Quang', 'Giao Thủy - Nam Định', 'quang6cnd@gmail.com', '0359316477', '0000-00-00', 0, 0, '123'),
-(11, 0, 0, 'Trần Văn Quang', 'Giao Thủy - Nam Định', 'quang6cnd@gmail.com', '0359316477', '0000-00-00', 0, 0, '12314'),
-(12, 0, 0, 'Trần Văn Quang', '21', 'quang6cnd@gmail.com', '0359316477', '0000-00-00', 0, 0, 'rtertertert');
+INSERT INTO `cart` (`id_order`, `name_user`, `address`, `email`, `phone`, `date_cart`, `totalPrice`, `status`, `order_note`) VALUES
+(2, 'Trần Quang', 'Bến xe Giáp Bát', 'demo1@gmail.com', '0354937274', '2019-12-03', '1800000', 1, '12384'),
+(28, 'Trần Quang', 'Giao Thủy - Nam Định', 'admin@gmail.com', '0359316477', '2019-12-17', '200000', 0, '12313');
 
 -- --------------------------------------------------------
 
@@ -91,6 +86,15 @@ CREATE TABLE `categories` (
   `ordernum` int(11) NOT NULL,
   `show_menu` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`id_cate`, `name_cate`, `ordernum`, `show_menu`) VALUES
+(15, 'demo', 6, '1'),
+(16, 'test', 1, '1'),
+(17, 'test2', 2, '1');
 
 -- --------------------------------------------------------
 
@@ -106,6 +110,14 @@ CREATE TABLE `comment` (
   `rating` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `comment`
+--
+
+INSERT INTO `comment` (`id_comment`, `username`, `content`, `date_bl`, `rating`, `id`) VALUES
+(53, 'demo', 'test', '2019-12-17', 4, 67),
+(57, 'demo', '123', '2019-12-17', 2, 68);
 
 -- --------------------------------------------------------
 
@@ -126,10 +138,11 @@ CREATE TABLE `galleries` (
 --
 
 CREATE TABLE `order_detail` (
+  `id_detail` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
-  `id_product` int(11) NOT NULL,
+  `nameproduct` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `totalPrice` float NOT NULL
+  `itemTotal` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -151,6 +164,15 @@ CREATE TABLE `product` (
   `rating` int(11) NOT NULL,
   `id_cate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`id`, `nameproduct`, `price`, `sale_price`, `detail`, `detail_specifications`, `image`, `amount`, `status`, `rating`, `id_cate`) VALUES
+(67, 'demo123', '15000000', '150000', '<p>1313</p>\r\n', '<p>sản phẩm đẹp</p>\r\n', '636645880857584545_Xps-13.jpg', 3, '1', 0, 15),
+(68, 'test', '100000', '50000', '', '', '636578276358777570_Asus-X507UA-BR167T.png', 3, '1', 0, 15),
+(69, 'eaa', '150000', '100000', '', '', '636716713669065969_Asus-S15.png', 3, '1', 0, 15);
 
 -- --------------------------------------------------------
 
@@ -221,7 +243,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `username`, `password`, `name`, `email`, `address`, `phone`, `image`, `role`, `status`) VALUES
 (29, 'lanyentran1', '$2y$10$VuUJaFJ6y0qaH5WXyqu2R.Gmf8Hg.N.KaAZbxXEPfNn', 'nguyễn thị lan', 'lanyentran@gmail.com', 'lập thạch, vĩnh phúc', '0392870317', '636645880857584545_Xps-13.jpg', 0, 1),
 (36, 'demo', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Văn Quang', 'quang6cnd@gmail.com', '2145134515', '0359316477', '72164731_515945072578665_7629967701506523136_n.jpg', 0, 1),
-(41, 'demo1111', '25d55ad283aa400af464c76d713c07ad', 'Trần Văn Quang', 'Leevip12c12@gmail.com', 'address', '0359316477', '45452589_480089019147847_6084658560262733824_n.jpg', 0, 1),
+(41, 'deMo1', 'e10adc3949ba59abbe56e057f20f883e', 'Trần Văn Quang', 'Leevip12c12@gmail.com', 'address', '0359316477', '45452589_480089019147847_6084658560262733824_n.jpg', 0, 1),
 (44, 'quang6cnd@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Trần Văn Quang', 'quang6cnd@gmail.com', 'address', '0359316477', '72164731_515945072578665_7629967701506523136_n.jpg', 0, 1);
 
 -- --------------------------------------------------------
@@ -254,7 +276,7 @@ ALTER TABLE `admin`
 -- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_order`);
 
 --
 -- Chỉ mục cho bảng `categories`
@@ -273,6 +295,12 @@ ALTER TABLE `comment`
 --
 ALTER TABLE `galleries`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD PRIMARY KEY (`id_detail`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -318,19 +346,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id_cate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_cate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT cho bảng `galleries`
@@ -339,10 +367,16 @@ ALTER TABLE `galleries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT cho bảng `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT cho bảng `roles`

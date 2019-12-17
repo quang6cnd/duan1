@@ -14,7 +14,7 @@ if(isset($_GET['id'])){
 		$stmt->execute();
 		
 		//Kiểm tra nếu xóa thành công thì chuyển trang view
-		if($stmt->rowCount() >0){
+		if($stmt->rowCount()>0){
 			header('location: list_sanpham.php');
 		}else{
 			echo "Không thể xóa Sản phẩm";

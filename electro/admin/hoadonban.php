@@ -18,7 +18,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr align="center">
-					<th>id</th>
+					<th>STT</th>
 					<!-- <th>id-user</th> -->
 					<th>Họ tên</th>
 					<th>Địa chỉ</th>
@@ -36,10 +36,18 @@
 				<?php
 					//đổ dữ liệu ra
 					foreach($result as $row){
-						$total = number_format($row['total'], 0, '', ',');
+						$total = number_format($row['totalPrice'], 0, '', ',');
 					?>
 						<tr>
-							<td><?= $row['id'] ?></td>
+							<td><?php 
+							if(isset($i)){
+								$i += 1;
+							}else{
+								$i = 1;
+							}
+
+							echo $i;
+							?></td>
 							<!-- <td><?= $row['id_user'] ?></td> -->
 							<td><?= $row['name_user'] ?></td>
 							<td><?= $row['address'] ?></td>
@@ -50,7 +58,7 @@
 							<td><?= $total ?> VND</td>
 							<td>
 								<?php
-									if($row['status'] == 0){
+									if($row['status'] == 1){
 										?>
 											<option value="<?= $row['status'] ?>">Đã hoàn thành</option>
 										<?php
@@ -62,8 +70,8 @@
 								?>
 							</td>
 							<td class="action">
-								<a href="#?id=<?= $row['id'] ?>">Chi tiết | </a>
-								<a href="xoa_donhang.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa đơn hàng này ?');">Xóa</a>
+								<a href="chitiethoadon.php?id_order=<?= $row['id_order'] ?>">Chi tiết | </a>
+								<a href="xoa_donhang.php?id_order=<?= $row['id_order'] ?>" OnClick="return confirm('Xóa đơn hàng này ?');">Xóa</a>
 							</td>
 						</tr>
 					<?php

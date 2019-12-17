@@ -46,7 +46,7 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 					//đổ dữ liệu ra
 				foreach($join as $row){
 					$gia_sp = number_format($row['price'], 0, '', ',');
-					$gia_km = number_format($row['price'], 0, '', ',');
+					$gia_km = number_format($row['sale_price'], 0, '', ',');
 					?>
 					<tr>
 						<!-- 	<td><input name="mang[]"  type="checkbox" value="<?= $row['ma_hh'] ?>"></td> -->

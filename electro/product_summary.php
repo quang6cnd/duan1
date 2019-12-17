@@ -68,12 +68,12 @@
                                                             </a>
                                                         </div>
                                                     </td>
-                                                    <td><?php echo number_format($item['sale_price']); ?>.000 vnđ</td>
+                                                    <td><?php echo number_format($item['sale_price']); ?> vnđ</td>
                                                     <td><?php 
                                                     $itemTotal = $item['sale_price']*$item['quantity'];
                                                     $totalPrice += $itemTotal;
 
-                                                    echo number_format($itemTotal); ?>.000 vnđ</td>
+                                                    echo number_format($itemTotal); ?> vnđ</td>
                                                 </tr>
                                             <?php endforeach ?>
                                             
@@ -83,7 +83,7 @@
                                 <div class="clearfix text-right">
                                     <span><b>Tổng thanh toán:</b></span>
                                     <li>
-                                    </strong></span>  <strong class="cart-total"><?php echo number_format($totalPrice); ?>.000 vnđ </strong>
+                                    </strong></span>  <strong class="cart-total"><?php echo number_format($totalPrice); ?> vnđ </strong>
                                 </li>
                             </div>
                             <div class="button text-right">

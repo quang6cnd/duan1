@@ -47,7 +47,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr align="center">
-					<th>Tên danh mục</th>
+					<th>Tên sản phẩm</th> 
 					<th>Số bình luận</th>
 					<th>Mới nhất</th>
 					<th>Cũ nhất</th>

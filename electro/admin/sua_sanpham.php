@@ -35,6 +35,10 @@ $mess = "";
           $mess = "Thiếu đơn giá";
         }else if($price <= 0){
           $mess = "Đơn giá phải lớn hơn 0";
+        }else if($sale_price <= 0){
+          $mess = "Đơn giá phải lớn hơn 0";
+        }else if($price <= $sale_price){
+          $mess = "Khuyến mại phải nhỏ hơn đơn giá ";
         
     // }else if(empty($ngay_nhap)){
     //   $mess = "Thiếu ngày nhập";

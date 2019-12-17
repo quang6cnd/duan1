@@ -5,6 +5,7 @@ $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
 // $totalPrice = 0;
     // var_dump($cart);die;
 ?>
+<?php error_reporting(0); ?>
 <?php 
 		  require_once "db.php";
       $select = "SELECT * from cart";
@@ -21,15 +22,24 @@ $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
     }else{
       //Sql create
     	$date_cart = date('Y/m/d');
-      $create_cart = "INSERT into cart(name_user, address,  email, phone, date_cart, total, order_note) values('$name_user', '$address', '$email', '$phone', 'date_cart', '$totalPrice', '$order_note')";
+    	foreach ($cart as $item) {
+    	
+    	$itemTotal = $item['sale_price']*$item['quantity'];
+        $totalPrice += $itemTotal;
+   		 
+      $create_cart = "INSERT into cart(name_user, address,  email, phone, date_cart, totalPrice, order_note) values('$name_user', '$address', '$email', '$phone', '$date_cart', '$totalPrice', '$order_note')";
       $stmt = $conn->prepare($create_cart);
       $stmt->execute();
+
+			}				
       //Check
       if($stmt->rowCount() > 0){
-      //Chuyển trang
+		// $order_detail = "INSERT into order_detail(nameproduct, quantity, itemTotal) values('$nameproduct', '$quantity', '$itemTotal') WHERE id_order=$id_order";
+		// $sttt = $conn->prepare($order_detail);
+		// $sttt->execute();
        
           
-         echo "<script> aleart(Tạo đơn hàng thành công)</script>";
+         $mess = "Tạo đơn hàng thành công!";
       }else{
         $mess = "Không thể thêm dữ liệu";
       }
@@ -176,14 +186,16 @@ $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
 								<div><strong>Thành tiền</strong></div>
 							</div>
 							<?php foreach ($cart as $item): ?>
+								
 								<div class="order-products">
 									<div class="order-col">
 										<div><?php echo $item['name'] ?></div>
-										<div>*<?php echo $item['quantity'] ?></div>
+										<div><input type="hidden" name="quantity" value="<?php $quantity ?>">
+											* <?php echo $item['quantity'] ?></div>
 										<div><?php  $itemTotal = $item['sale_price']*$item['quantity'];
 										$totalPrice += $itemTotal;
 
-										echo number_format($itemTotal); ?>.000 vnđ</td></div>
+										echo number_format($itemTotal); ?> vnđ</td></div>
 									</div>
 
 								</div>
@@ -194,7 +206,7 @@ $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
 							</div>
 							<div class="order-col">
 								<div><strong>Tổng đơn</strong></div>
-								<div><strong class="order-total"><input type="hidden" name="totalPrice" value="<?php $totalPrice ?>"><?php echo number_format($totalPrice); ?>.000 vnđ</strong></div>
+								<div><strong class="order-total"><input type="hidden" name="totalPrice" value="<?php $totalPrice ?>"><?php echo number_format($totalPrice); ?> vnđ</strong></div>
 							</div>
 						</div>
 						<!-- <div class="payment-method">

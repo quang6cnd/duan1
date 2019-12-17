@@ -63,7 +63,7 @@ include('includes/header.php');
 
     <div class="form-group">
      <label for="">Thứ tự</label>
-     <input type="text" name="ordernum" class="form-control" value="<?=$categories['ordernum']?>">
+     <input type="text" name="ordernum" min="0"> class="form-control" value="<?=$categories['ordernum']?>">
    </div>
    <div class="form-group">
      <label for="" style="display: block;">Trạng thái</label>
