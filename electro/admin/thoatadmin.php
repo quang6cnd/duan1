@@ -4,8 +4,8 @@ session_start();
 // header('Location: ../index.php');
 // session_start();
 
-if (isset($_SESSION['username'])){
-    unset($_SESSION['username']); // xóa session login
+if (isset($_SESSION['user'])){
+    unset($_SESSION['user']); // xóa session login
 }
 //
 // $session = $_SESSION['username'];

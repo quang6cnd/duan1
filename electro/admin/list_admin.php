@@ -34,7 +34,7 @@
 					?>
 						<tr>
 							<td><?= $row['id_admin'] ?></td>
-							<td><?= $row['username'] ?></td>
+							<td><?= $row['user'] ?></td>
 							<td><?= $row['name'] ?></td>
 							<td><?= $row['email'] ?></td>
 							<td><img style="width: 70px; margin: -10px" src="../img/<?= $row['image'] ?>" alt=""></td>

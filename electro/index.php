@@ -19,14 +19,7 @@
 
 
 
-		if(isset($_POST['buttonSearch'])){
-			$nameproduct =$_POST['nameproduct'];
-			$sql = "select * from product where nameproduct like '%$nameproduct%'";
-			$stmt=$conn->prepare("$sql");
-			$stmt->execute();
-			$searchproduct = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			header("Location:./electro/store.php");
-		}
+		
 		?>
 		<!DOCTYPE html>
 		<html lang="en">
@@ -180,7 +173,7 @@
 												?>
 											</div>
 											<div class="product-btns">
-												<a href="product.php?id=<?=$product['id']?>"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"> QUICK VIEW</span></button></a>
+												<a href="product.php?id=<?=$product['id']?> && id_cate=<?=$product['id_cate']?>"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"> QUICK VIEW</span></button></a>
 											</div>
 										</div>
 										<div class="add-to-cart">
@@ -209,7 +202,7 @@
 	<!-- /SECTION -->
 
 	<!-- HOT DEAL SECTION -->
-	<div id="hot-deal" class="section">
+		<div id="hot-deal" class="section">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
@@ -250,308 +243,165 @@
 			</div>
 			<!-- /row -->
 		</div>
-		<!-- /container -->
-	</div>
-	<!-- /HOT DEAL SECTION -->
-
-	<!-- SECTION -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-
-				<!-- section title -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h3 class="title">Top selling</h3>
-					</div>
-				</div>
-				<!-- /section title -->
-
-				<!-- Products tab & slick -->
-				<div class="col-md-12">
-					<div class="row">
-						<div class="products-tabs">
-							<!-- tab -->
-							<div id="tab2" class="tab-pane fade in active">
-								<div class="products-slick" data-nav="#slick-nav-2">
-									<!-- product -->
-									<?php
-									foreach ($join as $product):?>
-										<div class="product">
-											<div class="product-img">
-												<img src="img/<?=$product['image']?>" alt="">
-												<!-- <div class="product-label">
-													<span class="sale">-<?php echo $product['sale_price']; ?>%</span>
-												</div> -->
-											</div>
-											<div class="product-body">
-												<p class="product-category"><?php echo $product['name_cate'] ?></p>
-												<h3 class="product-name"><?php echo $product['nameproduct'] ?></h3>
-												<h4 class="product-price"><?php echo $product['sale_price'] ?> VND <del class="product-old-price"><?php echo $product['price'] ?> VND </del></h4>
-												<div class="product-rating">
-													<?php 
-													for($i = 1; $i <= 5; $i++){
-														if($product['rating'] >= $i){
-															$starClass = "fa fa-star";
-														}else{
-															$starClass = "fa fa-star-o";
-														}
-														?>
-														<i class="<?php echo $starClass ?>"></i>
-														<?php
-													}
-													?>
-												</div>
-												<div class="product-btns">
-													<a href="product.php?id=<?=$product['id']?>"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"> QUICK VIEW</span></button></a>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><a href="add-cart.php?masp=<?php echo $product['id'] ?>" onclick="return confirm('Đã thêm vào giỏ hàng của bạn thành công !')"><p>Thêm vào giỏ</p></button></a>
-											</div>
-										</div>
-									<?php endforeach;?>
-
-									<!-- /product -->
-
-									<!-- product -->
-
-									<!-- /product -->
-
-									<!-- product -->
-
-									<!-- /product -->
-
-									<!-- product -->
-
-									<!-- /product -->
-
-									<!-- product -->
-
-									<!-- /product -->
-								</div>
-								<div id="slick-nav-2" class="products-slick-nav"></div>
-							</div>
-							<!-- /tab -->
-						</div>
-					</div>
-				</div>
-				<!-- /Products tab & slick -->
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /SECTION -->
-
-	<!-- SECTION -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="section-title">
-					<h4 class="title">Top selling</h4>
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-										<!-- product -->
-										<?php
-										foreach ($join as $product) {
-
-											?>
-											<div class="product">
-												<div class="product-img">
-													<img src="img/<?=$product['image']?>" alt="">
-													<!-- <div class="product-label">
-														<span class="sale">-<?php echo $product['sale_price']; ?>%</span>
-													</div> -->
-												</div>
-												<div class="product-body">
-													<p class="product-category"><?php echo $product['name_cate'] ?></p>
-													<h3 class="product-name"><?php echo $product['nameproduct'] ?></h3>
-													<h4 class="product-price"><?php echo $product['sale_price'] ?> VND <del class="product-old-price"><?php echo $product['price'] ?> VND </del></h4>
-													<div class="product-rating">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="product-btns">
-														<a href="product.php?id=<?=$product['id']?>"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"> QUICK VIEW</span></button></a>
-													</div>
-												</div>
-												<div class="add-to-cart">
-													<button class="add-to-cart-btn"><a href="add-cart.php?masp=<?php echo $product['id'] ?>" onclick="return confirm('Đã thêm vào giỏ hàng của bạn thành công !')"><p>Thêm vào giỏ</p></button></a>
-												</div>
-											</div>
-											<?php
-										}
-										?>
-										<!-- /tab -->
-									</div>
-								</div>
-							</div>
-							<!-- Products tab & slick -->
-						</div>
-						<!-- /row -->
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 </div>
-</div>
-</div>
 
-<!-- /SECTION -->
+<!-- /HOT DEAL SECTION -->
 
-<!-- NEWSLETTER -->
-<div id="newsletter" class="section">
+<!-- SECTION -->
+<div class="section">
 	<!-- container -->
 	<div class="container">
 		<!-- row -->
 		<div class="row">
+			<!-- section title -->
 			<div class="col-md-12">
-				<div class="newsletter">
-					<p>Sign Up for the <strong>NEWSLETTER</strong></p>
-					<form>
-						<input class="input" type="email" placeholder="Enter Your Email">
-						<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-					</form>
-					<ul class="newsletter-follow">
-						<li>
-							<a href="#"><i class="fa fa-facebook"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-instagram"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-pinterest"></i></a>
-						</li>
-					</ul>
+				<div class="section-title">
+					<h3 class="title"><a href="" title="">LAPTOP ĐỒ HỌA</a></h3>
 				</div>
 			</div>
+			<!-- /section title -->
+
+			<!-- Products tab & slick -->
+			<div class="col-md-12">
+				<div class="row">
+					<div class="products-tabs">
+						<!-- tab -->
+						<div id="tab2" class="tab-pane fade in active">
+							<div class="products-slick" data-nav="#slick-nav-2">
+								<!-- product -->
+								<?php 
+								$myqli="select * from product where id_cate = 16 order by id desc limit 6";
+								$stmt= $conn->prepare($myqli);
+								$stmt->execute();
+								$newproduct = $stmt -> fetchAll(PDO:: FETCH_ASSOC);
+
+								?>
+								<?php
+								foreach ($newproduct as $game):?>
+									<div class="product">
+										<div class="product-img">
+											<img src="img/<?=$game['image']?>" alt="">
+
+										</div>
+										<div class="product-body">
+											<p class="product-category"><?php echo $game['id_cate'] ?></p>
+											<h3 class="product-name"><?php echo $game['nameproduct'] ?></h3>
+											<h4 class="product-price"><?php echo number_format($game['sale_price']) ?>VND<del class="product-old-price"><?php echo $game['price'] ?>VND</del></h4>
+											<div class="product-rating">
+												<?php 
+												for($i = 1; $i <= 5; $i++){
+													if($game['rating'] >= $i){
+														$starClass = "fa fa-star";
+													}else{
+														$starClass = "fa fa-star-o";
+													}
+													?>
+													<i class="<?php echo $starClass ?>"></i>
+													<?php
+												}
+												?>
+											</div>
+											<div class="product-btns">
+												<a href="product.php?id=<?=$game['id']?> && id_cate=<?=$game['id_cate']?>"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"> QUICK VIEW</span></button></a>
+											</div>
+										</div>
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+										</div>
+									</div>
+								<?php endforeach;?>
+
+							</div>
+							<div id="slick-nav-2" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
+					</div>
+				</div>
+			</div>
+			<!-- /Products tab & slick -->
 		</div>
 		<!-- /row -->
 	</div>
 	<!-- /container -->
 </div>
-<!-- /NEWSLETTER -->
+</div>
+<!-- /SECTION -->
 
-<!-- FOOTER -->
-<footer id="footer">
-	<!-- top footer -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="col-md-3 col-xs-6">
-					<div class="footer">
-						<h3 class="footer-title">About Us</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-						<ul class="footer-links">
-							<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-							<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-							<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-						</ul>
+<!-- /SECTION -->
+
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="section-title">
+				<h4 class="title">PHỤ KIỆN LAPTOP</h4>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="products-tabs">
+							<!-- tab -->
+							<div id="tab1" class="tab-pane active">
+								<div class="products-slick" data-nav="#slick-nav-1">
+									<?php 
+									$myq="select * from product where id_cate =17 order by id desc limit 6";
+									$stmt= $conn->prepare($myq);
+									$stmt->execute();
+									$accessories = $stmt -> fetchAll(PDO:: FETCH_ASSOC);
+
+
+									?>
+									<!-- product -->
+									<?php
+									foreach ($accessories as $acc) {
+
+										?>
+										<div class="product">
+											<div class="product-img">
+												<img src="img/<?=$acc['image']?>" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category"><?php echo $acc['id_cate'] ?></p>
+												<h3 class="product-name"><?php echo $acc['nameproduct'] ?></h3>
+												<h4 class="product-price"><?php echo number_format($acc['sale_price']) ?>VND<del class="product-old-price"><?php echo number_format($acc['price']) ?>VND</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<a href="product.php?id=<?=$acc['id']?> && id_cate=<?=$acc['id_cate']?>"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"> QUICK VIEW</span></button></a>
+												</div>
+											</div>
+											<div class="add-to-cart">
+											<button class="add-to-cart-btn"><a href="add-cart.php?masp=<?php echo $product['id'] ?>" onclick="return confirm('Đã thêm vào giỏ hàng của bạn thành công !')"><p>Thêm vào giỏ</p></button></a>
+										</div>
+										</div>
+										<?php
+									}
+									?>
+									<!-- /tab -->
+								</div>
+							</div>
+						</div>
+						<!-- Products tab & slick -->
 					</div>
-				</div>
-
-				<div class="col-md-3 col-xs-6">
-					<div class="footer">
-						<h3 class="footer-title">Categories</h3>
-						<ul class="footer-links">
-							<li><a href="#">Hot deals</a></li>
-							<li><a href="#">Laptops</a></li>
-							<li><a href="#">Smartphones</a></li>
-							<li><a href="#">Cameras</a></li>
-							<li><a href="#">Accessories</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="clearfix visible-xs"></div>
-
-				<div class="col-md-3 col-xs-6">
-					<div class="footer">
-						<h3 class="footer-title">Information</h3>
-						<ul class="footer-links">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Contact Us</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Orders and Returns</a></li>
-							<li><a href="#">Terms & Conditions</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-xs-6">
-					<div class="footer">
-						<h3 class="footer-title">Service</h3>
-						<ul class="footer-links">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">View Cart</a></li>
-							<li><a href="#">Wishlist</a></li>
-							<li><a href="#">Track My Order</a></li>
-							<li><a href="#">Help</a></li>
-						</ul>
-					</div>
+					<!-- /row -->
 				</div>
 			</div>
-			<!-- /row -->
 		</div>
-		<!-- /container -->
 	</div>
-	<!-- /top footer -->
+</div>
 
-	<!-- bottom footer -->
-	<div id="bottom-footer" class="section">
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<ul class="footer-payments">
-						<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-						<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-						<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-						<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-						<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-						<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-					</ul>
-					<span class="copyright">
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</span>
-				</div>
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /bottom footer -->
-</footer>
-<!-- /FOOTER -->
+<!-- /SECTION -->
 
-<!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+<!-- NEWSLETTER -->
+<?php include("share/footer.php"); ?>
+
 
 </body>
 </html>

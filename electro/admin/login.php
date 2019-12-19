@@ -14,7 +14,7 @@
 
 		// Check tài khoản tồn tại không
 		foreach ($result as $row) {
-				if ($row['username'] != $username) {
+				if ($row['user'] != $user) {
 					$check_user = 'false';
 				}else{
 					$check_user = '';
@@ -22,14 +22,14 @@
 				}
 			}
 
-		if (empty($username)) {
+		if (empty($user)) {
 			$message = "Bạn chưa nhập tài khoản !<br>";
 		}elseif($check_user == 'false'){
 			$message .= "Tài khoản không tồn tại !<br>";
 		}
 
 		
-		$sql_check_tk = "SELECT * FROM admin WHERE username = '$username'";
+		$sql_check_tk = "SELECT * FROM admin WHERE user= '$user'";
 		$stmt_check_tk = $conn->query($sql_check_tk)->fetch();
 
 		if (empty($password)) {
@@ -38,16 +38,16 @@
 			$message .= "Mật khẩu không đúng !<br>";
 		}
 
-		if ($stmt_check_tk['username'] == $username && $stmt_check_tk['password'] == $new_pass) {
+		if ($stmt_check_tk['user'] == $user && $stmt_check_tk['password'] == $new_pass) {
 			
 			
 			if ($stmt_check_tk['role'] == '1') {
 				header('location: index.php');
-				$_SESSION['username'] = $username;
+				$_SESSION['user'] = $user;
 				$_SESSION['password'] = $new_pass;
 			}elseif($stmt_check_tk['role'] == '0'){
-				header('location: ../home.php');
-				$_SESSION['username'] = $username;
+				header('location: ../index.php');
+				$_SESSION['user'] = $user;
 				$_SESSION['password'] = $new_pass;
 			}
 		}else{
@@ -93,18 +93,22 @@
 <body>
 	
 	<div class="limiter">
+		
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(login/images/bg-01.jpg);">
 					<span class="login100-form-title-1">
 						Sign In
 					</span>
-				</div>
+				</div><br>	
+				<div style="color: red ; text-align: center;">
+						<?=$message ?> 
+					</div>
 
 				<form action="" method="post" class="login100-form validate-form" >
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username:</span>
-						<input class="input100" type="text" name="username" placeholder="Nhập tài khoản">
+						<input class="input100" type="text" name="user" placeholder="Nhập tài khoản">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -117,9 +121,9 @@
 					<div class="flex-sb-m w-full p-b-30">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" value="yes">
-							<label class="label-checkbox100" for="ckb1" name="remember">
+							<!-- <label class="label-checkbox100" for="ckb1" name="remember">
 								Remember me
-							</label>
+							</label> -->
 						</div>
 
 						

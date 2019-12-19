@@ -40,7 +40,7 @@ $mess = "";
 				$mess = "Vui lòng điền đầy đủ thông tin cần thiết";
 			}else{
       //Sql create
-				$update_ad = "UPDATE admin set username='$username', name='$name', image='$image', email='$email', role='$role' ,status='$status' where id_admin='$id_admin'";
+				$update_ad = "UPDATE admin set user='$user', name='$name', image='$image', email='$email', role='$role' ,status='$status' where id_admin='$id_admin'";
 				$stmt = $conn->prepare($update_ad);
 				$stmt->execute();
       //Check
@@ -69,7 +69,7 @@ $mess = "";
 			<h2>Sửa tài khoản</h2>
 			<div class="form-group">
 				<label for="">Tài khoản</label>
-				<input type="text" name="username" class="form-control" value="<?=$users['username']?>">
+				<input type="text" name="user" class="form-control" value="<?=$users['username']?>">
 			</div>
 			<div class="form-group">
 				<label for="">Họ Tên</label>

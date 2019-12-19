@@ -29,13 +29,13 @@
         }
 
     ///Kiểm tra
-    if($username == "" || $name == "" || $password == "" || $status != 0 && $status != 1 || $role != 0 && $role != 1){
+    if($user == "" || $name == "" || $password == "" || $status != 0 && $status != 1 || $role != 0 && $role != 1){
       $mess = "Vui lòng điền đầy đủ thông tin cần thiết";
     }else if($xac_nhan != $password){
       $mess = "Mật khẩu không trùng khớp";
     }else{
       $new_pass = md5($password);
-      $create_kh = "INSERT into admin(username, password, name, status, image, email, role) values('$username', '$new_pass', '$name', '$status', '$image', '$email', '$role')";
+      $create_kh = "INSERT into admin(user, password, name, status, image, email, role) values('$user', '$new_pass', '$name', '$status', '$image', '$email', '$role')";
       $stmt = $conn->prepare($create_kh);
       $stmt->execute();
       //Check
@@ -59,7 +59,7 @@
             <h2>Thêm mới tài khoản</h2>
             <div class="form-group">
               <label for="">Tài khoản</label>
-              <input type="text" name="username" class="form-control" placeholder="username">
+              <input type="text" name="user" class="form-control" placeholder="username">
             </div>
             <div class="form-group">
               <label for="">Họ Tên</label>
