@@ -52,12 +52,18 @@
                     <span style="font-size: 18px; margin-left: 150px;color: white;line-height: 50px;"><marquee behavior="alternate"> Welcome to System Administrator!!!</marquee></span>
                 </div>
             </div>
+            <?php 
+               require_once"../db.php";
+                if (isset($_SESSION['user'])) {
+                    $user = $_SESSION['user'];
+                    $sql_tk = "SELECT * FROM admin WHERE user = '$user'";
+                    $stmt_tk = $conn->query($sql_tk)->fetch();
+            ?>
 
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Xin chào:&nbsp; <!-- <?php if (isset($_SESSION['taikhoan'])) {echo $_SESSION['taikhoan'];} {
-                    } ?> --> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Xin chào:&nbsp; <?php echo $user; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -68,8 +74,12 @@
                         <li class="divider"></li>
                         <li>
                             <a href="thoatadmin.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+
                         </li>
+
                     </ul>
+            <?php } ?>
+                    
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->

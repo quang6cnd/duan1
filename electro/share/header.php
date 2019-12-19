@@ -23,7 +23,7 @@ $totalPrice = 0;
 				<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 			</ul>
 			<ul class="header-links pull-right">
-				<li><a href="signin.php"><i class="fa fa-user-o"></i>
+			
 						<?php 
 							if (isset($_SESSION['username'])) {
 										$username = $_SESSION['username'];
@@ -33,7 +33,7 @@ $totalPrice = 0;
 
 					</a>
 
-				</li>
+					<li><a href="inforuser.php?username=<?=$stmt_tk['username']?>"><i class="fa fa-user-o"></i>
 					<li style="color: #fff"> Xin chào <?php echo $username; ?></li>
 					<li><a href="logout.php" title="">Đăng xuất</a></li>
 					<?php
@@ -45,6 +45,7 @@ $totalPrice = 0;
 						}
 
 					?>
+					</li>
 			</ul>
 		</div>
 	</div>

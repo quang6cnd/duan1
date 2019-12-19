@@ -26,20 +26,25 @@ $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
     	
     	$itemTotal = $item['sale_price']*$item['quantity'];
         $totalPrice += $itemTotal;
-   		 
+   		 }
       $create_cart = "INSERT into cart(name_user, address,  email, phone, date_cart, totalPrice, order_note) values('$name_user', '$address', '$email', '$phone', '$date_cart', '$totalPrice', '$order_note')";
       $stmt = $conn->prepare($create_cart);
       $stmt->execute();
 
-			}				
+						
       //Check
       if($stmt->rowCount() > 0){
+      	foreach ($cart as $key => $item) {
+      		# code...
+      	
 		// $order_detail = "INSERT into order_detail(nameproduct, quantity, itemTotal) values('$nameproduct', '$quantity', '$itemTotal') WHERE id_order=$id_order";
 		// $sttt = $conn->prepare($order_detail);
 		// $sttt->execute();
        
           
          $mess = "Tạo đơn hàng thành công!";
+         unset($_SESSION['CART'][$key]);
+     	}
       }else{
         $mess = "Không thể thêm dữ liệu";
       }
@@ -101,7 +106,7 @@ $cart = isset($_SESSION['CART']) ? $_SESSION['CART'] : [];
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">Checkout</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="home.php">Home</a></li>
+							<li><a href="index.php">Trang chủ</a></li>
 							<li class="active">Checkout</li>
 						</ul>
 					</div>

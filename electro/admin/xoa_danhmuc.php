@@ -12,7 +12,7 @@ if(isset($_GET['id_cate'])){
 		$stmt = $conn->prepare($delete_hh);
 		$stmt->execute();
 		//xóa bình luận 
-		$delete_bl = "DELETE from comment where id=$id";
+		$delete_bl = "DELETE from comment where id=(select id from product where id_cate = $id_cate )";
 		$sttt = $conn->prepare($delete_bl);
 		$sttt->execute();
 		//Check

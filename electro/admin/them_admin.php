@@ -29,13 +29,13 @@
         }
 
     ///Kiểm tra
-    if($user == "" || $name == "" || $password == "" || $status != 0 && $status != 1 || $role != 0 && $role != 1){
+    if($user == "" || $name == "" || $password == "" || $status != 0 && $status != 1 ){
       $mess = "Vui lòng điền đầy đủ thông tin cần thiết";
     }else if($xac_nhan != $password){
       $mess = "Mật khẩu không trùng khớp";
     }else{
       $new_pass = md5($password);
-      $create_kh = "INSERT into admin(user, password, name, status, image, email, role) values('$user', '$new_pass', '$name', '$status', '$image', '$email', '$role')";
+      $create_kh = "INSERT into admin(user, password, name, status, image, email, role) values('$user', '$new_pass', '$name', '$status', '$image', '$email', '$1')";
       $stmt = $conn->prepare($create_kh);
       $stmt->execute();
       //Check

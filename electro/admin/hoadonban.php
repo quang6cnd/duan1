@@ -21,8 +21,6 @@
 					<th>STT</th>
 					<!-- <th>id-user</th> -->
 					<th>Họ tên</th>
-					<th>Địa chỉ</th>
-					<th>Số điện thoại</th>
 					<th>Ngày đặt</th>
 					<th>Email</th>
 					<th>Ghi chú</th>
@@ -50,8 +48,6 @@
 							?></td>
 							<!-- <td><?= $row['id_user'] ?></td> -->
 							<td><?= $row['name_user'] ?></td>
-							<td><?= $row['address'] ?></td>
-							<td><?= $row['phone'] ?></td>
 							<td><?= $row['date_cart'] ?></td>
 							<td><?= $row['email'] ?></td>
 							<td><?= $row['order_note'] ?></td>

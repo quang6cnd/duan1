@@ -9,15 +9,21 @@ $sql="SELECT * FROM product where id";
 $stmt=$conn->prepare($sql);
 $stmt->execute();
 $img=$stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$mess="";
 ?>
 
 
 <?php include("includes/header.php"); ?>
 <?php include("includes/sidebar.php") ;?>
 
+
+
 <h3>Thêm mới ảnh sản phẩm</h3>
+
 <form action="add_gallery.php" method="post" enctype="multipart/form-data">
+	<div style="color: red ; text-align: center;">
+						<?=$mess ?> 
+					</div>
 	<select name="product_id">
 		<?php foreach ($img as $pro):?>
 			<option value="<?=$pro['id']?>"><?=$pro['nameproduct']?></option>

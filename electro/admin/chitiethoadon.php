@@ -21,18 +21,15 @@
 		<table class="table table-hover">
 			<thead>
 				<tr align="center">
-					<th>id</th>
+					<th>Tên khách hàng</th>
 					<!-- <th>id-user</th> -->
-					<th>Họ tên</th>
 					<th>Địa chỉ</th>
 					<th>Số điện thoại</th>
-					<th>Ngày đặt</th>
-					<th>Email</th>
-					<th>Ghi chú</th>
-					<th>Tổng</th>
+					<th>Tổng tiền</th>
 					
-					<th>Trạng thái</th>
-					<th width="150">Action</th>
+					
+
+
 				</tr>
 			</thead>
 			<tbody>
@@ -43,15 +40,12 @@
 					?>
 						<tr>
 							
-							<td><?= $row['id_order'] ?></td> 
-							<td><?= $row['name_user'] ?></td>
+							<td><?= $row['name_user'] ?></td> 
 							<td><?= $row['address'] ?></td>
 							<td><?= $row['phone'] ?></td>
-							<td><?= $row['date_cart'] ?></td>
-							<td><?= $row['email'] ?></td>
-							<td><?= $row['order_note'] ?></td>
+
 							<td><?= $total ?> VND</td>
-							<td>
+							<!-- <td>
 								<?php
 									if($row['status'] == 1){
 										?>
@@ -63,15 +57,14 @@
 										<?php
 									}
 								?>
-							</td>
-							<td class="action">
-								<a href="update.php?id_order=<?= $row['id_order'] ?>" OnClick="return confirm('Xác nhận hoàn thành đơn hàng');">Cập nhật | </a>
-								<a href="xoa_donhang.php?id_order=<?= $row['id_order'] ?>" OnClick="return confirm('Xóa đơn hàng này ?');">Xóa</a>
-							</td>
+							</td> -->
+							
 						</tr>
+
 					<?php
 					}
 				?>
+				<button><a href="update.php?id_order=<?= $row['id_order'] ?>" OnClick="return confirm('Xác nhận hoàn thành đơn hàng');">Xác nhận hoàn thành đơn hàng  </a></button>
 			</tbody>
 		</table>
 	</div>

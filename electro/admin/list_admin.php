@@ -68,7 +68,7 @@
 								<?php
 									if($row['role'] == 1){
 										?>
-										<a href="sua_user.php?id_admin=<?= $row['id_admin'] ?>">Cập nhật</a>
+										<a href="sua_admin.php?id_admin=<?= $row['id_admin'] ?>">Cập nhật</a>
 										<?php
 									}
 								?>

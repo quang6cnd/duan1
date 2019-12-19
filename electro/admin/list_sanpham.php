@@ -38,7 +38,7 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 					<th>Đơn giá</th>
 					<th>Giảm giá</th>
 					<th>Số lượng</th>
-					<th>Rating</th>
+					<th>Galleries</th>
 					<th>Trạng thái</th>
 					<th width="150">Action</th>
 				</tr>
@@ -70,11 +70,21 @@ $join=$stmt->fetchAll(PDO::FETCH_ASSOC);
 						<td><?= $gia_sp ?> VND</td>
 						<td><?= $gia_km ?> VND</td>
 						<td><?= $row['amount'] ?></td>
-						<td><?= $row['rating'] ?></td>
-						<td><?= $row['status'] ?></td>
+						<td><a href="list_product_gallery.php?id=<?php echo $row['id'] ?>"><button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" data-original-title="Chi tiết"><i class="fa fa-search"></i></button></a></td>
+						<td><?php
+									if($row['status'] == 0){
+										?>
+											<option value="<?= $row['status'] ?>">Không hiển thị</option>
+										<?php
+									}else{
+										?>
+											<option value="<?= $row['status'] ?>">Hiển thị</option>
+										<?php
+									}
+								?></td>
 						<td class="action">
 							<a href="sua_sanpham.php?id=<?= $row['id'] ?>">Thay đổi | </a>
-							<a href="xoa_sanpham.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Sản phẩm này ?');">Xóa</a>
+							<a href="xoa_sanpham.php?id=<?= $row['id'] ?>" OnClick="return confirm('Xóa Sản phẩm này sẽ xóa cả comment trong sản phẩm?');">Xóa</a>
 						</td>
 					</tr>
 					<?php

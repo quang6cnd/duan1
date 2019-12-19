@@ -10,6 +10,7 @@
 
 	<?php
 	 session_start();
+
 	 include("share/style.php"); ?>
 
 </head>

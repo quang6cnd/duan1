@@ -33,7 +33,7 @@
 	<div id="signin">
 		<div class="cart-block">
                                 <div class="cart-info table-responsive">
-                                    <table class="table product-list">
+                                    <table class="table product-list" style="height: auto;">
                                         <thead>
                                             <tr>
                                                 <td>Ảnh</td>
@@ -51,8 +51,11 @@
                                                 <tr>
                                                     <td>
                                                         <div class="cart-img">
+                                                             <a class="btn btn-danger btn-sm" href="remove_cart_item.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Bạn muốn xóa sản phẩm ?')">
+                                                                <i class="fa fa-trash"></i>
+                                                                </a>
                                                             <a href="#">
-                                                                <img src="img/<?php echo $item['feature_image'] ?>" alt="" style="width: 250px; height: auto;">
+                                                                <img src="img/<?php echo $item['feature_image'] ?>" alt="" style="width: 150px; height: auto;">
                                                             </a>
                                                         </div>
                                                     </td>
@@ -60,13 +63,15 @@
                                                     </td>
                                                     <td>
                                                         <div class="cart-action">
-                                                            <input type="number" min="0" name="quantity" class="form-control cart-quantity" value="<?php echo $item['quantity'] ?>"/><br>
-                                                            <button class="btn btn-default" type="submit"><a href="product_summary.php"><i class="fa fa-refresh"></i></a>
-                                                            </button>
-                                                            <a class="btn btn-danger btn-sm" href="remove_cart_item.php?id=<?php echo $item['id'] ?>" onclick="return confirm('Bạn muốn xóa sản phẩm ?')">
-                                                                <i class="fa fa-trash"></i>
-                                                            </a>
+                                                             <form action="update-cart.php?id=<?php echo $item['id'] ?>&url=<?php echo $_SERVER['REQUEST_URI']?>" method="post">
+                                                            <button type="" name="reduction">-</button>
+                                                            <input style="width: 30px; text-align: center;" type="text" name="quantity" readonly="" value="<?php echo $item['quantity'] ?>" class="quantity_input"  />
+                                                            <button type="" name="increase" style="float: right; position: none; margin-top: -45px;margin-right: -20px;">+</button>
+                                                            </form>
+                                                                
+                                                                
                                                         </div>
+                                                       
                                                     </td>
                                                     <td><?php echo number_format($item['sale_price']); ?> vnđ</td>
                                                     <td><?php 
@@ -101,7 +106,7 @@
 		<!-- container -->
 		<div class="container">
 			<!-- row -->
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-md-12">
 					<div class="newsletter">
 						<p>Sign Up for the <strong>NEWSLETTER</strong></p>
@@ -125,7 +130,7 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- /row -->
 		</div>
 		<!-- /container -->

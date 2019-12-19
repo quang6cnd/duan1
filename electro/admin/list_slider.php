@@ -1,4 +1,5 @@
 <?php 
+
 	include'includes/check_login.php';
 	include('includes/header.php');
 	require_once "../db.php";
@@ -9,6 +10,7 @@
 	$slide = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+
 
 <div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

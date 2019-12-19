@@ -69,7 +69,7 @@ $mess = "";
 			<h2>Sửa tài khoản</h2>
 			<div class="form-group">
 				<label for="">Tài khoản</label>
-				<input type="text" name="user" class="form-control" value="<?=$users['username']?>">
+				<input type="text" name="user" class="form-control" value="<?=$users['user']?>">
 			</div>
 			<div class="form-group">
 				<label for="">Họ Tên</label>
